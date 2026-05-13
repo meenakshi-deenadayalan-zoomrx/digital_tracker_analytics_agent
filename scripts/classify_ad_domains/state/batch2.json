@@ -1,0 +1,288 @@
+{
+  "batch_size": 50,
+  "remaining": 6014,
+  "min_count_filter": 10,
+  "domains": [
+    {
+      "domain": "elevate.bio",
+      "count": 1087,
+      "sample_url": "https://elevate.bio/?gbraid=0AAAAAoWeH8wEfOJTvXA9TVquWNsp_iwZs&utm_term=&utm_campaign=Remarketing&utm_source=adwords&utm_medium=ppc&hsa_acc=5466578664&hsa_cam=20449095570&hsa_grp=152029486243&hsa_ad=781827300458&hsa_src=d&hsa_tgt=aud-2176017264163&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_source=5&gad_campaignid=20449095570&gclid=CjwKCAiA_orJBhBNEiwABkdmjEppQwqj7tjmBOmTB6_Te0NYIbNDGU8SzSOLhs1_YLEU8UZdeL6wyhoCm3MQAvD_BwE"
+    },
+    {
+      "domain": "stjude.org",
+      "count": 1061,
+      "sample_url": "https://www.stjude.org/donate/beanie.html?sc_cid=bnn&sc_dcm=435111661&d_creative=246641403&&gad_source=7"
+    },
+    {
+      "domain": "related.nativeinfoline.com",
+      "count": 1045,
+      "sample_url": "https://related.nativeinfoline.com/search.cfm?ule=4035&&lgplp=jf75EJ:BJ1eJL&prvep=g4ztEd5Gptti639Yk9qpGA==&ktr=1&vi=1775936317890219858&cq=815f95d_19XWvBdrNfB49d&vsid=4155079315351326&sc=MA&oksu=224&prid=8PRVCXX19&cid=8CU231JW5&pid=8POR2HJM7&crid=972930361&https=1&rms=1775936321&size=970x250&ksu=224&ugd=4&tsid=15062&asn=7922&radepth=0&kwep=Q4U5PZHH&U/JPB3aa&UWPzTzGTHHt&UV4PB3aa&UgPz&U5PZHH&oscar=1&tsce=L1196-S1196&ssld={\"QQNN\":\"Pb\",\"QQN75\":\"QB1YEQNm77\",\"QQ8E\":\"uhH.uFi.uFX.u9X\",\"QQQN\":\"cK\"}&mprps"
+    },
+    {
+      "domain": "takhzyro.com",
+      "count": 1032,
+      "sample_url": "https://www.takhzyro.com/getting-takhzyro/?entry_channel=banner_ad"
+    },
+    {
+      "domain": "aol.com",
+      "count": 1031,
+      "sample_url": "https://www.aol.com"
+    },
+    {
+      "domain": "bindiusa.com",
+      "count": 1005,
+      "sample_url": "https://bindiusa.com/product/coppa-pistachio/?gad_source=5&gad_campaignid=22208495501&gclid=EAIaIQobChMI0e_o6N6rkQMVU5YDCB1LHRcvEAEYASAAEgLPOfD_BwE"
+    },
+    {
+      "domain": "mothertobaby.org",
+      "count": 984,
+      "sample_url": "https://mothertobaby.org/ongoing-study/dupixent"
+    },
+    {
+      "domain": "tms.eharmony.com",
+      "count": 960,
+      "sample_url": "https://tms.eharmony.com/cl"
+    },
+    {
+      "domain": "dollar.app.link",
+      "count": 950,
+      "sample_url": "https://dollar.app.link/0aLNY6U07Yb"
+    },
+    {
+      "domain": "milanolegacy.com",
+      "count": 948,
+      "sample_url": "https://milanolegacy.com/?utm_source=criteo&utm_medium=display&utm_campaign=Acquisition (targeting 1st time buyers)&utm_id=633978&cto_pld=Bpoi5tvoAQDAUuRzA0aZzw"
+    },
+    {
+      "domain": "curi.com",
+      "count": 944,
+      "sample_url": "https://www.curi.com"
+    },
+    {
+      "domain": "luckykitchen.net",
+      "count": 919,
+      "sample_url": "https://luckykitchen.net/?&gad_source=7"
+    },
+    {
+      "domain": "mygardyn.com",
+      "count": 824,
+      "sample_url": "https://mygardyn.com/?utm_source=google&utm_medium=cpc&utm_campaign=&utm_id=20001561489&utm_term=&utm_content=&nbt=nb:adwords:x:20001561489::&nb_adtype=&nb_kwd=&nb_ti=&nb_mi=277479155&nb_pc=online&nb_pi=&nb_ppi=&nb_placement=&nb_li_ms=&nb_lp_ms=&nb_fii=&nb_ap=&nb_mt=&gbraid=0AAAAACakiZ8VfjoEtLpOvS-9KTJXUVLKe&utm_term=&utm_campaign=US_PMax_HM&utm_source=adwords&utm_medium=ppc&hsa_acc=2604927837&hsa_cam=20001561489&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_s"
+    },
+    {
+      "domain": "sportsbook.draftkings.com",
+      "count": 802,
+      "sample_url": "https://sportsbook.draftkings.com"
+    },
+    {
+      "domain": "tedbaker.com",
+      "count": 794,
+      "sample_url": "https://www.tedbaker.com/?utm_source=criteo&utm_medium=display&utm_campaign=In-Market&utm_id=592697&cto_pld=_yICR-LkAQAKsV7MeBdPpQ"
+    },
+    {
+      "domain": "jjcrabhouse.com",
+      "count": 792,
+      "sample_url": "https://www.jjcrabhouse.com/?&gad_source=7"
+    },
+    {
+      "domain": "tmraudio.com",
+      "count": 790,
+      "sample_url": "https://tmraudio.com/?utm_source=us_audio_mart&utm_medium=cpc&utm_campaign=hp_banner&utm_content=january_2026"
+    },
+    {
+      "domain": "rxabbvie.com",
+      "count": 783,
+      "sample_url": "https://www.rxabbvie.com/pdf/botox_medguide.pdf "
+    },
+    {
+      "domain": "mtb.com",
+      "count": 782,
+      "sample_url": "https://mtb.com/business?ch=basis&campaignid={campaignid}&utm_source=basis&utm_medium=display&utm_campaign=2025_brand_bau_business_prove_basis_fairfield_cmp7mieiem|cmp7mieiem&&gad_source=7"
+    },
+    {
+      "domain": "realry.com",
+      "count": 773,
+      "sample_url": "https://realry.com/products/6329abcfa162d941b21614c4?gad_source=5&gad_campaignid=21843065753&gclid=Cj0KCQiA_8TJBhDNARIsAPX5qxQU6aQKFDz9kHjd8K8Ohs3QPdhrn-bpgFbcsQKC_eU0ts4TLhGdEQ4aAhebEALw_wcB"
+    },
+    {
+      "domain": "provider.dexcom.com",
+      "count": 758,
+      "sample_url": "https://provider.dexcom.com/?&gad_source=7"
+    },
+    {
+      "domain": "gardasil9.com",
+      "count": 747,
+      "sample_url": "https://www.gardasil9.com/patient-a/"
+    },
+    {
+      "domain": "osakiusa.com",
+      "count": 730,
+      "sample_url": "https://osakiusa.com/products/ador-3d-allure?variant=45791605653743&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=5&gad_campaignid=23469293741"
+    },
+    {
+      "domain": "carusohomes.com",
+      "count": 712,
+      "sample_url": "https://www.carusohomes.com/"
+    },
+    {
+      "domain": "windownation.com",
+      "count": 708,
+      "sample_url": "http://windownation.com"
+    },
+    {
+      "domain": "goodwill.org",
+      "count": 704,
+      "sample_url": "https://www.goodwill.org/training-to-unlock-your-potential-with-google-ai-essentials?[\u2026]=shopgoodwill&utm_medium=website&utm_campaign=GOODWILLai2025"
+    },
+    {
+      "domain": "alz.org",
+      "count": 703,
+      "sample_url": "https://www.alz.org/"
+    },
+    {
+      "domain": "skyrizi.com",
+      "count": 699,
+      "sample_url": "https://www.skyrizi.com/crohns/cost-and-savings?cid=DIS_7754756_432277789_626554158_229760889&&gad_source=7&gad_campaignid=23192807004"
+    },
+    {
+      "domain": "bpo.org",
+      "count": 691,
+      "sample_url": "https://bpo.org?utm_campaign=asymm_25-26_fall&utm_source=dv360&utm_medium=banner&&gad_source=7"
+    },
+    {
+      "domain": "gmenvolve.com",
+      "count": 683,
+      "sample_url": "https://www.gmenvolve.com/fleet/electric-vehicles/chevrolet-brightdrop?cmp=OLA_DISPLAY_33724846_424992559_618087354_238050110#interestedinchevroletbrightdropvans"
+    },
+    {
+      "domain": "vaxassist.com",
+      "count": 680,
+      "sample_url": "http://vaxassist.com/myvaxplan?cmp=238934419&sid=8920670&pid=426307805"
+    },
+    {
+      "domain": "contrave.com",
+      "count": 677,
+      "sample_url": "https://contrave.com/dont-own-me/"
+    },
+    {
+      "domain": "bowflex.com",
+      "count": 673,
+      "sample_url": "https://www.bowflex.com/product/1090-results-series-adjustable-dumbbells/ZMK4011009.html?adID=DOFG2BFEED1&utm_source=google&utm_medium=cpc&utm_campaign=[ROI] PMAX | Branded + Adjustable Weights&utm_id=22869128316&utm_content=&utm_term=&adID=DOFG2BFEED1&gad_source=5&gad_campaignid=22878836116&gclid=EAIaIQobChMI3c2uvbnwkQMVl45aBR2MWjVxEAEYASABEgJaFvD_BwE"
+    },
+    {
+      "domain": "myasthenia-gravis.com",
+      "count": 667,
+      "sample_url": "https://myasthenia-gravis.com/forums"
+    },
+    {
+      "domain": "webroot.com",
+      "count": 662,
+      "sample_url": "http://www.webroot.com/us/en/home/lp/essentials?&gad_source=7"
+    },
+    {
+      "domain": "merckvaccines.com",
+      "count": 661,
+      "sample_url": "http://www.merckvaccines.com/ENFLONSIA/?utm_source=aap&utm_medium=banner&utm_campaign=Conference+Digital&utm_content=US-RSM-00030&utm_term=ENFLONSIAhcp.com&utm_uid=test_user"
+    },
+    {
+      "domain": "bimzelx.com",
+      "count": 657,
+      "sample_url": "https://www.bimzelx.com/hidradenitis-suppurativa?utm_medium=display&utm_source=HEALTHUN&utm_campaign=HS_Branded&utm_content=300+x+250&utm_term=PatientActivatorPlacement"
+    },
+    {
+      "domain": "aad.org",
+      "count": 655,
+      "sample_url": "https://www.aad.org/"
+    },
+    {
+      "domain": "zchocolat.com",
+      "count": 652,
+      "sample_url": "https://www.zchocolat.com?zs=google&zm=cpc&zc=pmax_usa&mtm_campaign=g_pmax_usa&gad_source=5&gad_campaignid=22168480002&gclid=Cj0KCQiAubrJBhCbARIsAHIdxD_1W8FL3KW-4NEk_ockG5WDAORH9NRn6QQMb4-csx1_KEx8uYqEyjcaApjlEALw_wcB"
+    },
+    {
+      "domain": "freequizgames.com",
+      "count": 651,
+      "sample_url": "https://freequizgames.com/?q=1400&title=Which Anime Character Are You&utm_source=civilwartalk.com&gad_source=5&gad_campaignid=23332466124"
+    },
+    {
+      "domain": "luminishealthcareers.org",
+      "count": 649,
+      "sample_url": "https://www.luminishealthcareers.org/search-jobs?ss=paid&utm_campaign=TB360-PROS-P&utm_medium=display&utm_source=TalentBrew360&utm_content=425522749&=gh_src=0f3b367d8us"
+    },
+    {
+      "domain": "freestyleprovider.abbott",
+      "count": 646,
+      "sample_url": "https://www.freestyleprovider.abbott/us-en/cost-access.html"
+    },
+    {
+      "domain": "ubrelvy.com",
+      "count": 640,
+      "sample_url": "https://www.ubrelvy.com/challenge"
+    },
+    {
+      "domain": "mdlinx.com",
+      "count": 630,
+      "sample_url": "https://www.mdlinx.com/article/5-ethical-reasons-and-strategies-for-dismissing-a-patient/6hj93NMNqKkWIue26jMaIp?utm_source=mdl-onsite&utm_medium=banner-ad&utm_campaign=acq_house_2025_q1_toyom_ros&utm_content=AD3_300x250"
+    },
+    {
+      "domain": "botoxcosmetic.com",
+      "count": 623,
+      "sample_url": "https://www.botoxcosmetic.com/before-and-after?utm_campaign=btxc-btxc-us-btxcsy2evergreenconsideration-consideration-2022_100442&utm_source=ADL&utm_medium=VoxMedia-Display"
+    },
+    {
+      "domain": "dermjobs.usdermatologypartners.com",
+      "count": 620,
+      "sample_url": "https://dermjobs.usdermatologypartners.com/current-opportunities/arizona/general-dermatology-scottsdale-arizona-2/?utm_source=programmatic&utm_medium=display&utm_campaign=multiview_display&&gad_source=7"
+    },
+    {
+      "domain": "rinvoq.com",
+      "count": 620,
+      "sample_url": "https://www.rinvoq.com/appointment-pre-check?cid=DIS_7754756_431670149_626975609_232161161"
+    },
+    {
+      "domain": "getjobber.com",
+      "count": 612,
+      "sample_url": "https://www.getjobber.com/dlp/fsm-software-b?utm_source=amazon&utm_medium=display&utm_campaign=amzn-display-1st&aref=46m8cAlBRm"
+    },
+    {
+      "domain": "cozzyhomes.com",
+      "count": 608,
+      "sample_url": "https://cozzyhomes.com/products/abstract-cat-wy3010008cl-quilt?variant=47881421717737&utm_source=google&utm_medium=cpc&utm_campaign=23100500328&utm_content=&utm_term=&gad_source=5&gad_campaignid=23110566889&gclid=EAIaIQobChMI3e-69cvrkwMVpIGmBB0h-BNqEAEYASABEgK0GfD_BwE"
+    },
+    {
+      "domain": "saintlukeskc.org",
+      "count": 601,
+      "sample_url": "https://www.saintlukeskc.org?utm_source=google&utm_medium=display&utm_campaign=3084350-kc-mcm-2026_kc_brand_campaign&utm_term=gen&gad_campaignid=23506124155&gclid=EAIaIQobChMI_diF2IKvkwMVlL6mBB3_azqjEAEYASAAEgJWcvD_BwE"
+    }
+  ],
+  "healthcare_keywords": [
+    "adverse events",
+    "cardiology",
+    "clinical study",
+    "clinical trial",
+    "diabetes",
+    "diagnosis",
+    "disease",
+    "dosage",
+    "drug information",
+    "fda",
+    "hcp",
+    "healthcare professional",
+    "immunology",
+    "indication",
+    "medicaid",
+    "medicare",
+    "medication",
+    "oncology",
+    "patient",
+    "pharma",
+    "pharmaceutical",
+    "physician",
+    "prescribing",
+    "prescription",
+    "rx",
+    "side effects",
+    "therapy",
+    "treatment"
+  ],
+  "instructions": "For each domain: WebFetch https://<domain>/ with prompt 'Is this a healthcare, pharma, medical, HCP, or patient site? Quote any evidence.' Classify as 'non_healthcare' (confidence high/medium/low), 'healthcare', or 'uncertain'. Only 'non_healthcare' with confidence 'high' will be added to the ignore list. Submit via: python classify_ad_domains.py submit results.json"
+}

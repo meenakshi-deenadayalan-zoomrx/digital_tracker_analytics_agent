@@ -1,0 +1,288 @@
+{
+  "batch_size": 50,
+  "remaining": 5964,
+  "min_count_filter": 10,
+  "domains": [
+    {
+      "domain": "v.mbvlmb.com",
+      "count": 598,
+      "sample_url": "https://v.mbvlmb.com/095e7517-6d6e-4bbe-8414-c003b3fe3ecc?subID1=TJ_1011577162_PHUB_MOM_US&affiliateID=73599&source=TS1-1011577162&subID2=KW_{Keywords};PUB_Pornhub Mobile - Middle Banner;SBAN_010960A_JRKM_18_ALL_EN_71_L[1];SCMP_1011577162;LOC_PHUB&Location_Alias=Pornhub Mobile - Middle Banner&Pub=Pornhub Mobile Network&Target=STRAIGHT&BNR=010960A_JRKM_18_ALL_EN_71_L[1]&FileID=563879&cost=0.080&vf=7a4ac4ee8dd869d8ebe4e5b67a28043396a51835&width=393"
+    },
+    {
+      "domain": "plaud.ai",
+      "count": 597,
+      "sample_url": "https://www.plaud.ai/pages/plaud-christmas-sales?utm_source=criteo&utm_medium=ads&utm_campaign=Non-buyers 60D_Conversion&utm_id=535922&cto_pld=_AvNoO_YAQASl53K1ZUiJA"
+    },
+    {
+      "domain": "whypten.com",
+      "count": 595,
+      "sample_url": "https://WhyPTEN.com?assetid=COM0023085&ucreative=US95845A_1x1&uplace=292576&umedium=DISPLAY&uadpub=LassoMarketing&ucampaign=TRU-US-HH9qx-HCP&outcome=Reach&cmpid=HH9qx"
+    },
+    {
+      "domain": "caplyta.com",
+      "count": 592,
+      "sample_url": "https://www.caplyta.com?utm_campaign=32984466&utm_content=192145556&utm_term=410445798&utm_source=1330369&utm_medium=banner&&gad_source=7"
+    },
+    {
+      "domain": "tickets.la28.org",
+      "count": 575,
+      "sample_url": "https://tickets.la28.org?gad_source=5&gad_campaignid=23579131835"
+    },
+    {
+      "domain": "natera.com",
+      "count": 574,
+      "sample_url": "https://www.natera.com/info/fetal-focus/?utm_source=obsetetrics-gyn-gj-apr-high-ad&utm_campaign=1611760735&utm_medium=banner&&gad_source=7&gad_campaignid=23710982308"
+    },
+    {
+      "domain": "rugs.com",
+      "count": 573,
+      "sample_url": "https://rugs.com?utm_source=criteo&utm_medium=display&utm_campaign=Acquisition-2026/02/13-Adset&utm_id=656582&cto_pld=xMjxvI9jAQAhnwzt8sldcg"
+    },
+    {
+      "domain": "rhapsido.com",
+      "count": 571,
+      "sample_url": "https://www.rhapsido.com"
+    },
+    {
+      "domain": "sublocade.com",
+      "count": 570,
+      "sample_url": "https://www.sublocade.com/"
+    },
+    {
+      "domain": "events.medscapelive.org",
+      "count": 568,
+      "sample_url": "https://events.medscapelive.org/860488?utm_campaign=440721.02_edu_lilly+webinar+latam_virtual_11-19-25_cme_ovp&utm_source=edu&utm_theraputic_area=1900&utm_medium=ban&utm_content=pp"
+    },
+    {
+      "domain": "urbani.com",
+      "count": 560,
+      "sample_url": "https://urbani.com/products/black-truffle-butter?currency=USD&variant=45234729156861&utm_source=google&utm_medium=cpc&utm_campaign=Google Shopping&stkn=1b19e0eaf15a&utm_source=google&utm_medium=cpc&utm_campaign=P.Max_Oil-Salt-Dairy&gad_source=5&gad_campaignid=23085386351&gclid=Cj0KCQiAsNPKBhCqARIsACm01fQ8kv0P0j9AKbUswKKw1qKSD1YR4SRaJFDkMlaU0YR_EzdrtgK9tMcaAh7aEALw_wcB"
+    },
+    {
+      "domain": "embracepetinsurance.com",
+      "count": 554,
+      "sample_url": "https://www.embracepetinsurance.com/?utm_source=dv360&utm_medium=Display&utm_campaign=Embrace_PROG_Display_StandardDisplay_DV360_Prospecting_3rdParty_US_Consideration_FY25_Q4TakeOver_CPM_WM&utm_content=2025-09-Long-TermConditions&utm_keyword=33999049_433001468_243266509&&gad_source=7"
+    },
+    {
+      "domain": "flytradewind.com",
+      "count": 553,
+      "sample_url": "https://www.flytradewind.com/bahamas-scheduled/?utm_source=zeta&utm_medium=display&utm_campaign=bahamas"
+    },
+    {
+      "domain": "journals.sagepub.com",
+      "count": 553,
+      "sample_url": "https://journals.sagepub.com/home/SZJ?utm_medium=banner&utm_source=journals.sagepub.com&utm_campaign=jrnl_dec_cfpr_L953&utm_content=columnbottom"
+    },
+    {
+      "domain": "brainhealthmatters.com",
+      "count": 548,
+      "sample_url": "https://brainhealthmatters.com"
+    },
+    {
+      "domain": "boody.com",
+      "count": 546,
+      "sample_url": "https://www.boody.com/collections/bamboo-cloudknit-sweats?utm_source=google&utm_medium=cpc&utm_campaign=21895869999&utm_content=171221341118&utm_term=&tw_source=google&tw_adid=775415354141&tw_campaign=21895869999&gad_source=5&gad_campaignid=21895869999&gclid=CjwKCAiAz_DIBhBJEiwAVH2XwFQAEcKUjWdK38F8o8T0q0V3q3T2LH2EJsiRqIiF4dAUbqWl7tg17BoClLMQAvD_BwE"
+    },
+    {
+      "domain": "americasbest.com",
+      "count": 539,
+      "sample_url": "http://www.americasbest.com/?&gad_source=7"
+    },
+    {
+      "domain": "hazorfim.com",
+      "count": 531,
+      "sample_url": "https://hazorfim.com/black-friday\ud83d\udca5top-picks?utm_source=criteo&utm_medium=display&utm_campaign=Jewish Placements - June 23&utm_id=383668&cto_pld=-V6r5EHTAABQXvXTvl11gw"
+    },
+    {
+      "domain": "carcover.com",
+      "count": 530,
+      "sample_url": "https://www.carcover.com/rv-covers?utm_source=google&utm_medium=cpc&utm_campaign=17568601167&utm_content=&utm_term=&gad_source=5&gad_campaignid=22893745435&gclid=CjwKCAiAmKnKBhBrEiwAaqAnZ5qnyE1u6X-21dQyhICzEuUfsR6OqS9Yn2xB8dSRiBXXSaIyl6ba6RoClfkQAvD_BwE"
+    },
+    {
+      "domain": "us.marcobicego.com",
+      "count": 525,
+      "sample_url": "https://us.marcobicego.com/products/18k-yellow-gold-band-large?variant=51057732911386&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&utm_source=google&utm_medium=paid&utm_campaign=&utm_term=&utm_content=&gad_source=5&gad_campaignid=23234756302&gclid=CjwKCAiA_dDIBhB6EiwAvzc1cOn_o0zpBRO1RJyzsVivl5wa5at0i9cR2CbCJSHjYc7l2Wg19VB8hxoCqKcQAvD_BwE"
+    },
+    {
+      "domain": "clinique.com",
+      "count": 517,
+      "sample_url": "https://www.clinique.com/product/11480/25255/makeup/foundations/bb-and-cc-cream/moisture-surgetm-cc-cream-hydrating-colour-corrector-broad-spectrum-spf-30?shade=Light_Medium&gclsrc=aw.ds&&utm_id=go_cmp-22569451624_adg-_ad-__dev-c_ext-_prd-SKU47535_mca-5974762_sig-EAIaIQobChMI2Yu7m9CpkwMVqzXQBB1QGS8dEAEYASACEgIYzvD_BwE&utm_source=google&utm_term=go_cmp-22569451624_adg-_ad-__dev-c_ext-_prd-SKU47535_mca-5974762_sig-EAIaIQobChMI2Yu7m9CpkwMVqzXQBB1QGS8dEAEYASACEgIYzvD_BwE&utm_medium=cpc&gad_source=5&"
+    },
+    {
+      "domain": "focusongastroenterology.com",
+      "count": 511,
+      "sample_url": "https://focusongastroenterology.com/acg2025nash"
+    },
+    {
+      "domain": "article.writeswonder.com",
+      "count": 504,
+      "sample_url": "https://article.writeswonder.com/10-cross-generational-home-remedies-mothers-swear-by/"
+    },
+    {
+      "domain": "academic.oup.com",
+      "count": 500,
+      "sample_url": "https://academic.oup.com/advertising-and-corporate-services/pages/AGEING-media-kit"
+    },
+    {
+      "domain": "lynparza.com",
+      "count": 499,
+      "sample_url": "https://lynparza.com/prostate-cancer/results.html?source=LYP_N_C_20&umedium=DISPLAY&uadpub=6418205&ucampaign=32908239&ucreative=242229725&uplace=408592171&outcome=DTC&cmpid=1"
+    },
+    {
+      "domain": "acumenstories.com",
+      "count": 493,
+      "sample_url": "https://acumenstories.com/building-bridges-ai-and-humanity-at-work-together/?gad_source=5&gad_campaignid=23460905021&gclid=Cj0KCQiAm9fLBhCQARIsAJoNOctvWyTWHxfXZUYhmIjfew9P477kLtc-y1esaTxPm6hfbFVdaixyklUaAi-KEALw_wcB"
+    },
+    {
+      "domain": "dosequis.com",
+      "count": 493,
+      "sample_url": "https://www.dosequis.com/en-us/?utm_campaign=yt&utm_source=olv&utm_medium=34852618&utm_term=444375613&utm_content=253275506&&gad_source=7&gad_campaignid=23747479654"
+    },
+    {
+      "domain": "aionsilicon.com",
+      "count": 491,
+      "sample_url": "https://aionsilicon.com/custom-silicon-architecture/?utm_source=google&utm_medium=cpc&utm_campaign=custom_silicon_architecture&utm_content=rsa&gbraid=0AAAABBIZF4IK8DQ2m4kyvFPK_6kXmykYW&utm_term=&utm_campaign=Retargeting+\u2013+All+Visitors+\u2013+Broad+Awareness&utm_source=adwords&utm_medium=ppc&hsa_acc=2749327968&hsa_cam=22913329671&hsa_grp=186903534169&hsa_ad=770499917909&hsa_src=d&hsa_tgt=aud-2435602861907&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_source=5&gad_campaignid=22913329671&gclid=Cj0KCQjwk"
+    },
+    {
+      "domain": "deervalley.com",
+      "count": 490,
+      "sample_url": "https://www.deervalley.com/?utm_source=N8848.1836133UNOFFICIALNETWORKS&utm_medium=display&utm_content=pp434481840-cc241773329&utm_campaign=DV_Brand-W26-AWR-USA_END_UP&&gad_source=7"
+    },
+    {
+      "domain": "forlest.com",
+      "count": 490,
+      "sample_url": "https://forlest.com/products/jelly-gel-amber-minimizer-stretch-bra-for-cup-dd-i?variant=42086964068583&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=5&gad_campaignid=21899580477&gclid=EAIaIQobChMI_ILyid-NkQMVVIBaBR3CYzDvEAEYASACEgJ9afD_BwE"
+    },
+    {
+      "domain": "cosentyx.com",
+      "count": 488,
+      "sample_url": "https://www.cosentyx.com/ankylosing-spondylitis/how-cosentyx-works?utm_source=pmprphmp&utm_mlr=COS-1376548&utm_medium=display&utm_campaign=pmprphmp_branded_pr~cosa_ch~pg_bu~ph_yr~26_cu~dtc_id~b0004nk4_ca~b_ind~cosas_cn~2026cosentyxaxspadtcprog_jan-2026&utm_content=cos_axspa_lm_rise-run-health_pm-precision_mb~cose_ca~b_cm~get-moving_sp~standard_cd~cos-1376548_ed~4-9-2027_id~f00053fc_cr~hhh_ct~static_sz~320x50&utm_placement=id~d002c68n_pr~cosa_fm~ban_pd~p-weather-triggers_ad~dcm_dt~mwia_vv~vp70dv_"
+    },
+    {
+      "domain": "chronicdryeye.net",
+      "count": 487,
+      "sample_url": "https://chronicdryeye.net/hcp/3-otc-eye-drop-categories?utm_source=ttddisplay&utm_medium=hcp-display&utm_campaign=2025refresh&imp_id=0207e033-5277-409d-a316-fbbc47f8b213"
+    },
+    {
+      "domain": "npr.org",
+      "count": 483,
+      "sample_url": "https://www.npr.org"
+    },
+    {
+      "domain": "galderma.com",
+      "count": 478,
+      "sample_url": "https://www.galderma.com/sites/default/files/2024-12/Nemluvio_Dual PI for website 13Dec24.pdf"
+    },
+    {
+      "domain": "get-derila-ergo.com",
+      "count": 476,
+      "sample_url": "https://get-derila-ergo.com/article/derila-ergo-neck-pain?l=en&vndr=evf&evf=1&uid=6662&offid=78&affiliate_id=4&source_id=tomd_us275_neck4&gad_source=5&gad_campaignid=23554157208"
+    },
+    {
+      "domain": "ouraring.com",
+      "count": 473,
+      "sample_url": "https://ouraring.com/?utm_source=amazondsp&utm_medium=cpc&utm_campaign=AmzDSP_AlwaysOn_DTC_Comp_PR_US_LPV&utm_content=display&utm_term=alwayson&&gad_source=7&gad_campaignid=23494916056"
+    },
+    {
+      "domain": "servedbyadbutler.com",
+      "count": 469,
+      "sample_url": "http://servedbyadbutler.com/noclick"
+    },
+    {
+      "domain": "dupixent.com",
+      "count": 468,
+      "sample_url": "https://www.dupixent.com/asthma?utm_source=5743241&utm_medium=OLV&utm_campaign=32949261&utm_content=621729174_240994436&utm_term=409405753&moc="
+    },
+    {
+      "domain": "hims.com",
+      "count": 465,
+      "sample_url": "https://www.hims.com?utm_source=WSJ&utm_medium=display"
+    },
+    {
+      "domain": "performancegolf.com",
+      "count": 465,
+      "sample_url": "https://www.performancegolf.com/357-fairway/media/hybrid-sc?g_productchannel=&g_merchantid=&g_network=&g_partition=&g_adtype=&g_productid=&g_locphysical=9009715&g_source={sourceid}&g_adid=776209669813&g_ifcreative=&g_campaignid=23062393625&g_ifproduct=&g_acctid=458-668-7298&g_keyword=&g_locinterest=&g_placement=&g_adgroupid=186957956158&g_keywordid=&g_campaign=account&utm_medium=cpc&utm_source=demandgen&utm_campaign=os-357&utm_term=23062393625&utm_content=776209669813&sxid={adid}&gclid={gclid}&g"
+    },
+    {
+      "domain": "moxiplayer.com",
+      "count": 464,
+      "sample_url": "http://moxiplayer.com/article/en-3/?gad_source=5&gad_campaignid=23090924865&gclid=EAIaIQobChMI1sGr3oigkgMVd6fLAR0m0ykDEAEYASAAEgIWwfD_BwE"
+    },
+    {
+      "domain": "tripointehomes.com",
+      "count": 463,
+      "sample_url": "https://www.tripointehomes.com/az/phoenix-metro/abel-ranch?utm_medium=display&utm_source=google&utm_campaign=arizona_prospecting&dclid=CInd0bK9mJIDFZHyGAIdWSIOxQ&gad_source=5&gad_campaignid=11828999665"
+    },
+    {
+      "domain": "bjs.com",
+      "count": 462,
+      "sample_url": "http://bjs.com/Casselberry?trc=dpy|digre|sta|mbsp|ome|casselberryfl|na|noble|20251021"
+    },
+    {
+      "domain": "store.carkeysexpress.com",
+      "count": 454,
+      "sample_url": "https://store.carkeysexpress.com/"
+    },
+    {
+      "domain": "telecharge.com",
+      "count": 453,
+      "sample_url": "https://www.telecharge.com/"
+    },
+    {
+      "domain": "mubahy.com",
+      "count": 450,
+      "sample_url": "https://mubahy.com/product/audemars-piguet-royal-oak-offshore-ap15500-super-mens-watch-42mm-high-quality-replica?gad_source=5&gad_campaignid=22995936927&gclid=Cj0KCQiAm9fLBhCQARIsAJoNOcsfQZZLQ43l9jsHG-HPiDBmU6fax5LZ5hVBxwFJEi2xL8OR9-ZU07caAoYOEALw_wcB"
+    },
+    {
+      "domain": "oncologynewscentral.com",
+      "count": 446,
+      "sample_url": "https://www.oncologynewscentral.com/aml/targeted-therapy-for-acute-myeloid-leukemia-quick-quiz"
+    },
+    {
+      "domain": "harvey.ai",
+      "count": 445,
+      "sample_url": "https://www.harvey.ai/?gad_source=5&gad_campaignid=23036216833&gclid=Cj0KCQiA18DMBhDeARIsABtYwT2IIMXLYGdm5ltyljV2pxwqO2MD_DgUqXNO6c5334_2IBBZ52EHiBcaApzeEALw_wcB"
+    },
+    {
+      "domain": "msnrealty.com",
+      "count": 444,
+      "sample_url": "https://www.msnrealty.com/new-lp/nri-sakshi"
+    },
+    {
+      "domain": "monos.com",
+      "count": 440,
+      "sample_url": "https://monos.com/collections/luggage?utm_source=facebook&utm_medium=cpc&utm_campaign=asc_usa_luggage_bigbags&utm_id=23853861691070247&utm_content=120245206478460248&utm_term=23853861691060247&fbclid=IwZXh0bgNhZW0BMABhZGlkAasyYPL9rAhzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeOGi5YCFUiWLX8kZ4pfZ2u6VHgsIoYRKp-Xcccx6TQQCVTpokwvMIasPAHgc_aem_EHYDkJfl_NNkB7zDuNs0ow&h=AT5F1Ua4Qu32Uy9WoAj6kyh6KGn5L_DtFPYp1O_q-O_LEVbt3_G3f2tCwegEBFh-vGHw3FMavvC13JzV6jGrWcosYwYkANU21BdQsUztqf85CA5zFJ4JKq_REKtp98-7RW1NL5BVS"
+    }
+  ],
+  "healthcare_keywords": [
+    "adverse events",
+    "cardiology",
+    "clinical study",
+    "clinical trial",
+    "diabetes",
+    "diagnosis",
+    "disease",
+    "dosage",
+    "drug information",
+    "fda",
+    "hcp",
+    "healthcare professional",
+    "immunology",
+    "indication",
+    "medicaid",
+    "medicare",
+    "medication",
+    "oncology",
+    "patient",
+    "pharma",
+    "pharmaceutical",
+    "physician",
+    "prescribing",
+    "prescription",
+    "rx",
+    "side effects",
+    "therapy",
+    "treatment"
+  ],
+  "instructions": "For each domain: WebFetch https://<domain>/ with prompt 'Is this a healthcare, pharma, medical, HCP, or patient site? Quote any evidence.' Classify as 'non_healthcare' (confidence high/medium/low), 'healthcare', or 'uncertain'. Only 'non_healthcare' with confidence 'high' will be added to the ignore list. Submit via: python classify_ad_domains.py submit results.json"
+}

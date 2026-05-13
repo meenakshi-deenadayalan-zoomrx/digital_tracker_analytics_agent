@@ -1,0 +1,288 @@
+{
+  "batch_size": 50,
+  "remaining": 5914,
+  "min_count_filter": 10,
+  "domains": [
+    {
+      "domain": "nyp.org",
+      "count": 440,
+      "sample_url": "http://www.nyp.org/locations/westchester-hudson-valley/theone?utm_source=ci_programmatic&utm_medium=animated-banner&utm_campaign=Croud_Display_DV360_Westchester-and-HV~NYP-and-Columbia_NA~Service-Line_Consideration_The-One_FAD-Searches_NA&utm_content=The-One_Link-Clicks_DV360_A25+~DEM~CON-Broad_CPM_NA&utm_creative=The-One_Link-Clicks_DV360_A25+~DEM~CON-Broad_CPM_Access_NA~Doctors-From-Columbia-Westchester-The-One-Exterior~Book-an-Appointment_Animated-Banner_300x250_NA_Jan-2026&utm_id=PG:34960233"
+    },
+    {
+      "domain": "liquid-iv.com",
+      "count": 439,
+      "sample_url": "https://liquid-iv.com?cr_bannerid=2635050&cr_campaignid=522497&cr_type=display&cto_pld=JYyLqKjVAQDf1eJt-X7czQ"
+    },
+    {
+      "domain": "tryaladdin.com",
+      "count": 436,
+      "sample_url": "https://tryaladdin.com/?utm_source=criteo&utm_medium=display&utm_campaign=Retention-2025/09/28-Adset&utm_id=573360&cto_pld=_6OhPZjgAQC1hDSS4r-WKg"
+    },
+    {
+      "domain": "janssenlabels.com",
+      "count": 433,
+      "sample_url": "http://www.janssenlabels.com/package-insert/product-monograph/prescribing-information/DARZALEX+Faspro-pi.pdf"
+    },
+    {
+      "domain": "mailchimp.com",
+      "count": 433,
+      "sample_url": "https://mailchimp.com/features/custom-forms/?utm_source=amazon&utm_medium=prg&utm_campaign=phd_BAU_product_mym_eng_amazon_usa_en_202508_prg_prspct_mmb2p_905_ron_rotational_mym_display_320x50_usa&utm_content=prspct_mmb2p_905_ron_rotational_mym_display_320x50&&gad_source=7"
+    },
+    {
+      "domain": "express-scripts.com",
+      "count": 432,
+      "sample_url": "https://www.express-scripts.com/rx?CID=dis:bob:pharmacyrx1:CignaHVA247Pharmacist:DIS:RT0"
+    },
+    {
+      "domain": "virabyani.com",
+      "count": 430,
+      "sample_url": "https://virabyani.com/collections/all-wedding-rings?gad_source=5&gad_campaignid=22208888153&gclid=EAIaIQobChMI_5T7gJa5kQMVSzXQBB0iVh3hEAEYASAAEgIgjPD_BwE"
+    },
+    {
+      "domain": "asco.org",
+      "count": 427,
+      "sample_url": "https://asco.org/career-development/grants-awards?cmpid=ks_ascoorg_ga_applicationsopen_dsp_display_all__glob_010725___300x250_engage_image_"
+    },
+    {
+      "domain": "dexcom.com",
+      "count": 422,
+      "sample_url": "http://www.dexcom.com/?&gad_source=7&gad_campaignid=23369733981"
+    },
+    {
+      "domain": "shop.mitchellstores.com",
+      "count": 415,
+      "sample_url": "https://shop.mitchellstores.com?utm_source=criteo&utm_medium=display&utm_campaign=Prospecting - BC&utm_id=528540&cto_pld=qqNor-LrAAAimBXEN5T2iw"
+    },
+    {
+      "domain": "eversource-ct.com",
+      "count": 414,
+      "sample_url": "https://www.eversource-ct.com/heat-pump-water-heater?utm_source=localfactor&utm_medium=display&utm_campaign=eee_26_ct-hvac&utm_content=pr_hpwh_display_saveup"
+    },
+    {
+      "domain": "quill.com",
+      "count": 414,
+      "sample_url": "https://www.quill.com?td_adgroupid=2e1l96m&td_campaignid=y7g9z8o&td_creativeid=y7qqyla8&td_publisherid=174&td_site=mail.yahoo.com&td_type=display"
+    },
+    {
+      "domain": "trace.mediago.io",
+      "count": 413,
+      "sample_url": "https://trace.mediago.io/api/bidder/track?tn=39934c2bda4debbe4c680be1dd02f5d3&price=AhlNqH5nd8L_8kkf6ZHLzvZRmk3N5cTKprHH1qX2vP8&evt=102&rid=21bfc8fc58ae733b3b7c62dda65c1e79&campaignid=1314823&impid=44-11429.pch.com.728x90-1&offerid=21031276&test=1&time=1654654219&cp=I7NuIxIG6BOzCiLl3cOlhvqK3YZO0obLQ9t8wUztRHE&clickid=44_21bfc8fc58ae733b3b7c62dda65c1e79_44-11429.pch.com.728x90-1&acid=562&trackingid=5c98399861ef9ca0a7c9861400d1504a&uid=8214721737764984875&jt=2&url=69GBnr_akaNeBihJ_85vXFdBZyzCLi1tR"
+    },
+    {
+      "domain": "ozempic.com",
+      "count": 412,
+      "sample_url": "https://www.ozempic.com?utm_medium=Video&utm_source=ttd&utm_campaign=Era&utm_content=eramaria75&utm_id=nmtDC00006426&&gad_source=7"
+    },
+    {
+      "domain": "scarlet.movie",
+      "count": 407,
+      "sample_url": "https://scarlet.movie/"
+    },
+    {
+      "domain": "285motorsport.com",
+      "count": 405,
+      "sample_url": "https://285motorsport.com/products/audi-a3-s3-diffuser-2017-2020-8v-fl?variant=45091679306023&utm_source=google&utm_medium=cpc&utm_campaign=pmax_us_20420981949&utm_content=&gad_source=5&gad_campaignid=22163588596&gclid=Cj0KCQiAxJXJBhD_ARIsAH_JGjiozMQkQ-CfQPAWLznXeqH5cJr9AeXxCjG0WNDMlkSWT1o6eoGPSS4aAlmjEALw_wcB"
+    },
+    {
+      "domain": "aurelien-online.com",
+      "count": 405,
+      "sample_url": "https://aurelien-online.com/products/aur1-polo-longsleeve-dark-taupe?channable=062b586964003530373131353837313237363236a2&variant=50711587127626&currency=USD&utm_source=google&utm_medium=cpc&utm_campaign=20399065328&tw_source=google&tw_adid=&tw_campaign=20399065328&backup_glid=Cj0KCQjw1ZjOBhCmARIsADDuFTAG9L7Tu52KYmw2t5gAQ7LbGSrPU4dXMvWdiRl4Z7Of6jvU9uTHq1YaAvr1EALw_wcB&tw_source=google&tw_adid=&tw_campaign=20399065328&tw_kwdid=&gad_source=5&gad_campaignid=22137418736&gclid=Cj0KCQjw1ZjOBhCmARIsADD"
+    },
+    {
+      "domain": "biktarvy.com",
+      "count": 405,
+      "sample_url": "https://www.biktarvy.com/-/media/biktarvyv2/files/gd24dtp01tt-viremic-label-update-restart-r34.pdf?utm_source=6200436&utm_medium=display&utm_campaign=32924286&utm_content=32924286;409019690;241821420&utm_term=409019690&&gad_source=7"
+    },
+    {
+      "domain": "aap.org",
+      "count": 404,
+      "sample_url": "https://aap.org/SHOPAAP-NRP"
+    },
+    {
+      "domain": "journavx.com",
+      "count": 403,
+      "sample_url": "https://www.journavx.com?utm_id=439050&utm_campaign=b12d_a23w_12d_ot12_dl4080&utm_content=us-43-2500330_ab12&utm_source=tdd14&utm_medium=dp23&utm_term=320x50_learn-more_n1e2&&gad_source=7&gad_campaignid=23295698331"
+    },
+    {
+      "domain": "rangerover.com",
+      "count": 401,
+      "sample_url": "https://www.rangerover.com/en-us/current-offers/range-rover-sport-offers.html?utm_medium=pd&utm_source=amazon&utm_campaign=33266962&utm_term=434148383&utm_content=251195807&&gad_source=7"
+    },
+    {
+      "domain": "acuvue.com",
+      "count": 394,
+      "sample_url": "https://www.acuvue.com/en-us/get-contacts/free-trial-contact-lenses/?utm_source=display&utm_medium=programmatic&utm_campaign=2025_seen_awareness&utm_content=Seen_with_acuvue"
+    },
+    {
+      "domain": "matchtruly.com",
+      "count": 394,
+      "sample_url": "https://matchtruly.com/land/sp/4c3b46eb?utm_source=criteo_datewhirl&utm_medium=ua&campaign=CR_Matchtruly_USA_All_Native_EU_NewU_Dating-Audience_Cr-t_mua_17Feb&campaign_id=857739&group_id=657832&group=CR_Matchtruly_USA_All_Native_EU_NewU_Dating-Audience_Cr-t_mua_17Feb&partner=criteo_datewhirl&domain=msn.com&adid=2842309&utm_id=657832&cto_pld=1kMmTsHMAQDc48J5Cy68ew"
+    },
+    {
+      "domain": "s.seedtag.com",
+      "count": 394,
+      "sample_url": "https://s.seedtag.com/at/click?d=_0F9DIS_-jH6DLMINzfWosh5TGh2j6vyDVIyDokVqraYYz-inWT2IsrVMuRZ334YW25D7DdCAYsoKojhFr4kQMCDk9AAOku7poEqJ4AWmFicaP50nX1TL6KNl-jhbLStYSROTu4Nfajcl18FgLrtuRLfWZgZAn6PLwL-m7Pr1_rwU14VadrXinwwwi_uYyEmKMVcIoGWwMgIH7wBdC1bgFXmFYgkTlZMtmb__L0Hga4tSr3ZzUeOIoiawIspc-yaE5AbuHEuq1s_nPcGP5iWZzuezVeI368bKiuIbn2oW3-y1tp_DNt-h_NMAAWKXdjYwIIUkKXhmc8cLLeXW_b-mgCl_GcHjGFi16YAMYXjeDApXv3e98wW4HKl1xQCZghFq8qyJ_l66PsnFJ6WpIuGdCuAmxz-dq8kizBrXCXwONVU95KpG1x6PMqnnwBu5nXSJtBkjJBb3XbUPlV007X"
+    },
+    {
+      "domain": "koreadates.com",
+      "count": 393,
+      "sample_url": "https://koreadates.com/land/sp/1d326e28?partner=adw_koreadates_ua&campaignid=23673130306&gclid={gclid}&adgroupid=197481213747&targetid=&network=d&device=m&devicemodel=apple+iphone&loc_int_ph=_9028745&matchtype=&target=&keyword=&creative=800904155683&placement=www.espn.com&campaign=AW_Koreadates_USA-TOP1_All_GDN_Allpurchase_all_gender_35+_chinazes_keywords_S3_416_18Mar&group=in-market_Apparel_Accessories&banner_type=NF_46237_Grey_Koreadates_Asia_GDN_300\u0445250_Static&asset_type=&gbraid=0AAAAABfgOWB1"
+    },
+    {
+      "domain": "avsforum.com",
+      "count": 391,
+      "sample_url": "https://avsforum.com/subscribe/"
+    },
+    {
+      "domain": "store.uptodate.com",
+      "count": 390,
+      "sample_url": "https://store.uptodate.com/?utm_campaign=health_ce_individual_acq_uptodate_us_anesthesia &utm_medium=paid_social&utm_source=facebook&utm_id=6527148947626&utm_content=6527148931826&utm_term=6527148949226&fbclid=IwZXh0bgNhZW0BMABhZGlkAAAGR6XdQEpicmlkETF3cm5kYXMxZDA3d2J1MTVjc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtcy1TpLBavzO-gGe9WyRsxnjL2S_QHOroKsUVg8popCsoZSxA71R3mxJPv0_aem_3oCIrtoIyRYJX-j5NZPASw"
+    },
+    {
+      "domain": "rezdiffra.com",
+      "count": 388,
+      "sample_url": "https://www.rezdiffra.com/about-nash?utm_id=33120634&utm_source=meredith-interactive&utm_medium=display&utm_term=300x250&utm_content=2mad-rez-na-nafld-did-you-know-banner-tact-h5_p336lhl_231430167_418071150_nend_t377220&utm_campaign=madr_rdif_br_dtc_mp436--rezdiffra-nafld-nash_mar-dec_2025_pbd_us-bc_bt&&gad_source=7"
+    },
+    {
+      "domain": "biontech.com",
+      "count": 381,
+      "sample_url": "https://www.biontech.com/us/en/home.html"
+    },
+    {
+      "domain": "guardantcomplete.com",
+      "count": 381,
+      "sample_url": "https://www.guardantcomplete.com/hcp/solutions/guardant-infinity?utm_source=10267959&utm_medium=Display&utm_campaign=32885903&utm_content=618470344_237638716&utm_term=425612139"
+    },
+    {
+      "domain": "artisanpropertygroup.com",
+      "count": 379,
+      "sample_url": "https://artisanpropertygroup.com/?adct=gAAAAABpb-D6dNsj7OES-IYzMaVPB9_6GQPzSxcPP2Ltf-f45B4KzL9rHBV0-o-uCGqPi2ZPRFQ2AgnVsqfCvKNQPDRISNxf44W2kPYsYYvK4hYFJD_ZUOnBfm7hYaiKem2YASpqqpjY"
+    },
+    {
+      "domain": "xcopri.com",
+      "count": 376,
+      "sample_url": "https://www.xcopri.com/?utm_campaign=PM-US-XCOP-1635_HEA_12344&utm_source=Healthline&utm_medium=Display&utm_content=Brand_Awareness&utm_term=XCOPRI&content=243477156.421103232&&gad_source=7"
+    },
+    {
+      "domain": "ymaryland.org",
+      "count": 367,
+      "sample_url": "https://ymaryland.org/beforeafterschoolenrichment?utm_source=programmatic&utm_medium=display&utm_campaign=ymd2026&utm_content=registerforthe202627schoolyear"
+    },
+    {
+      "domain": "ugg.com",
+      "count": 364,
+      "sample_url": "https://www.ugg.com/boots?utm_source=google&utm_medium=pla&cq_src=google_ads&cq_cmp=21861444371&cq_con=&cq_term=&cq_med=&cq_plac=&cq_net=x&cq_pos=&cq_plt=gp&gclsrc=aw.ds&gad_source=5&gad_campaignid=22185401269"
+    },
+    {
+      "domain": "badcholesterol.com",
+      "count": 363,
+      "sample_url": "https://www.badcholesterol.com"
+    },
+    {
+      "domain": "hankooktire.com",
+      "count": 362,
+      "sample_url": "https://www.hankooktire.com/us/en/find-a-store.html?utm_source=google&utm_medium=paid_search_cpc&utm_campaign=Tire-Sales-city&utm_content=_&utm_term=tires orlando&gad_source=5&gad_campaignid=21234372434"
+    },
+    {
+      "domain": "purewickathome.com",
+      "count": 354,
+      "sample_url": "https://www.purewickathome.com/all-products"
+    },
+    {
+      "domain": "cslplasma.com",
+      "count": 352,
+      "sample_url": "https://www.cslplasma.com/new-donor-offer?utm_source=10214470&utm_medium=programmatic-display&utm_campaign=33976951&utm_term=428271181&utm_content=240907520&utm_source=10214470&utm_medium=programmatic-display&utm_campaign=33976951&utm_term=428271181&utm_content=240907520&&gad_source=7"
+    },
+    {
+      "domain": "wellcarenow.com",
+      "count": 352,
+      "sample_url": "http://WellcareNow.com/?utm_campaign=701Ki0000001VcwIAE&&gad_source=7"
+    },
+    {
+      "domain": "moviesunlimited.com",
+      "count": 351,
+      "sample_url": "http://moviesunlimited.com?gad_source=5&gad_campaignid=661067648&gclid=Cj0KCQiAjJTKBhCjARIsAIMC44-nPP086pyhNW9hqptdSdw23xLqZDaq9sDSv84bsDkAZi2SpcpajCkaAnacEALw_wcB"
+    },
+    {
+      "domain": "capvaxive.com",
+      "count": 347,
+      "sample_url": "https://www.capvaxive.com"
+    },
+    {
+      "domain": "personalizationmall.com",
+      "count": 346,
+      "sample_url": "http://www.personalizationmall.com/Best-Selling-Valentines-Day-Gifts-d1756.dept?gclid=EAIaIQobChMI-KWegfyGkgMVxV4IBB06iCYwEAEYASAAEgL35PD_BwE"
+    },
+    {
+      "domain": "yesglasses.com",
+      "count": 346,
+      "sample_url": "https://www.yesglasses.com?utm_campaign=go-acquisition&utm_source=criteo&utm_medium=display&_ad=ct&_cid=790979&_gid=477502&_aid=2107484&_dv=Web&_aty=1&_bd_id=&_bd_n=&cto_pld=_Xbj5BtaAQAlsJ0jVUXZvw"
+    },
+    {
+      "domain": "voltlighting.com",
+      "count": 344,
+      "sample_url": "https://www.voltlighting.com/bluetooth-outdoor-audio-system?utm_source=google&utm_medium=cpc&adpos=&scid=scplp&sc_intid=&gad_source=5&gad_campaignid=22699440634&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vHAxoNXRe51W08U4UvxX1s5fbLcqLe68vN5ka8Y3JiNri8Gj0IJFW4aAl69EALw_wcB"
+    },
+    {
+      "domain": "enquirernews.online",
+      "count": 343,
+      "sample_url": "https://enquirernews.online/?p=4632&gad_source=5&gad_campaignid=21674150113"
+    },
+    {
+      "domain": "allmodern.com",
+      "count": 342,
+      "sample_url": "https://allmodern.com?gbraid=0AAAAADNbpdDVhM18gud6vEp4Q3YQNT6VZ&refid=GX803163195493&CID=23683497785&adgroup=191846479662&crid=803163195493&device=m&placement=sngplbill.org.pk&network=d&product=&cmcode=YTP23476238174&gad_source=5&gad_campaignid=23683497785&ctype=110&label=video_click_to_advertiser_site"
+    },
+    {
+      "domain": "zeelool.com",
+      "count": 342,
+      "sample_url": "https://www.zeelool.com/?utm_source=Criteo_US&utm_medium=jakepc&utm_campaign=retargeting&utm_id=235204&cto_pld=VSVa_sS_AADUqg9UGsC5hA"
+    },
+    {
+      "domain": "apretude.com",
+      "count": 340,
+      "sample_url": "https://apretude.com/about-apretude/clinical-trials/?cc=d_3N47LF6CKCYMTGH2502101"
+    },
+    {
+      "domain": "info.wiley.com",
+      "count": 338,
+      "sample_url": "https://m.info.wiley.com/webApp/five-myths?utm_medium=display&utm_source=WOL"
+    },
+    {
+      "domain": "camfilapc.com",
+      "count": 337,
+      "sample_url": "https://camfilapc.com/products/dust-fume/gold-series-industrial-dust-collector/?utm_term=&utm_campaign=&utm_source=google-ads&utm_medium=ppc&gad_source=5&gad_campaignid=23230311074&gclid=Cj0KCQiAi9rJBhCYARIsALyPDtscez14R2n6vmTMrLwyXtq8NB2PF3mIJtD5kUlOPPhJwBDJBQ9aAngaAlM5EALw_wcB"
+    }
+  ],
+  "healthcare_keywords": [
+    "adverse events",
+    "cardiology",
+    "clinical study",
+    "clinical trial",
+    "diabetes",
+    "diagnosis",
+    "disease",
+    "dosage",
+    "drug information",
+    "fda",
+    "hcp",
+    "healthcare professional",
+    "immunology",
+    "indication",
+    "medicaid",
+    "medicare",
+    "medication",
+    "oncology",
+    "patient",
+    "pharma",
+    "pharmaceutical",
+    "physician",
+    "prescribing",
+    "prescription",
+    "rx",
+    "side effects",
+    "therapy",
+    "treatment"
+  ],
+  "instructions": "For each domain: WebFetch https://<domain>/ with prompt 'Is this a healthcare, pharma, medical, HCP, or patient site? Quote any evidence.' Classify as 'non_healthcare' (confidence high/medium/low), 'healthcare', or 'uncertain'. Only 'non_healthcare' with confidence 'high' will be added to the ignore list. Submit via: python classify_ad_domains.py submit results.json"
+}

@@ -1,0 +1,288 @@
+{
+  "batch_size": 50,
+  "remaining": 5864,
+  "min_count_filter": 10,
+  "domains": [
+    {
+      "domain": "swishersweets.com",
+      "count": 337,
+      "sample_url": "https://swishersweets.com/leaf/?utm_source=Display&utm_medium=Display&utm_campaign=SwisherLeafWraps2026"
+    },
+    {
+      "domain": "npthyroid.com",
+      "count": 334,
+      "sample_url": "https://www.npthyroid.com/for-practitioners/get-samples/?utm_source=EHR&utm_medium=display&utm_campaign=samples"
+    },
+    {
+      "domain": "botoxone.com",
+      "count": 331,
+      "sample_url": "https://www.botoxone.com/?cid=dis_botox_cm_banner_hcp_us-bcm-250133_medscape|botox|300x250#formEnroll"
+    },
+    {
+      "domain": "creoninfo.com",
+      "count": 330,
+      "sample_url": "https://www.creoninfo.com/about-creon?cid=DIS_7754777_432872021_627505535_250716882&&gad_source=7&gad_campaignid=23215206139"
+    },
+    {
+      "domain": "baerskintactical.com",
+      "count": 328,
+      "sample_url": "https://baerskintactical.com/category/offers/?nuclick=true&cid=21673670044&utm_source=google-d&utm_medium=paid&utm_campaign=21673670044&utm_term=-167821888220&utm_content=785565538779&feid=&tgid=aud-2353535434050&loci=&locp=9019630&maty=&ntwk=d&devc=c&kywd=&plcm=mail.yahoo.com&tagt=boomuserlist::8766172326&dvcm=&creative=785565538779&adgroupid=167821888220&campaign_id=21673670044&gad_source=5&gad_campaignid=21673670044&gclid=EAIaIQobChMIj_WnqemwkQMVbopaBR1PySydEAEYASAAEgKnA_D_BwE"
+    },
+    {
+      "domain": "getneffy.com",
+      "count": 328,
+      "sample_url": "http://getneffy.com/entry?t=dontlikeneedlesanimated&p=products/neffy"
+    },
+    {
+      "domain": "pro.campus.sanofi",
+      "count": 327,
+      "sample_url": "https://pro.campus.sanofi/us/atopic-dermatitis/meetthebests?utm_source=10282757&utm_medium=display&utm_campaign=35372989&utm_content=636345687_252775269&utm_term=443137550&moc=&&gad_source=7&gad_campaignid=23691346207"
+    },
+    {
+      "domain": "talk-prep.com",
+      "count": 327,
+      "sample_url": "https://www.talk-prep.com/?utm_source=bing&utm_medium=cpc&utm_campaign=us_sem_demh_hiv_hcp_bd_hivp_ma_na_na_nb_standard_prep+medication_1432ib&utm_content=677080230%3B1241349712364127%3Bkwd-77584721163656:loc-190&utm_term=prep+medicine&&msclkid=4bf6a9a4aaca1596e777c0a447fef6d1&gclid=4bf6a9a4aaca1596e777c0a447fef6d1&gclsrc=3p.ds&gad_source=7&gad_campaignid=22175455362"
+    },
+    {
+      "domain": "indivior.com",
+      "count": 326,
+      "sample_url": "https://www.indivior.com/"
+    },
+    {
+      "domain": "cureus.com",
+      "count": 321,
+      "sample_url": "https://www.cureus.com/registrations/sign_up"
+    },
+    {
+      "domain": "doihaveprediabetes.org",
+      "count": 321,
+      "sample_url": "https://doihaveprediabetes.org/es/toma-la-prueba-de-riesgo?utm_source=google.com&utm_medium=display&utm_campaign=AC_DBCx&utm_content=BRND_CORE_PTEE_SP_728x90&&gad_source=7#/"
+    },
+    {
+      "domain": "valentino-beauty.us",
+      "count": 321,
+      "sample_url": "https://www.valentino-beauty.us/extradose.html?&gad_source=7"
+    },
+    {
+      "domain": "cityofhope.org",
+      "count": 319,
+      "sample_url": "https://cityofhope.org/phoenix?utm_source=adelphic&utm_medium=display&utm_campaign=West_Gen_Onc_P37NWYY&utm_content=300x250-HTML5_Bryce Pursuing Cancer&invsrc=83a2bxpdo7qyoky&kxconfid=s8ymtai82&t_pur=pros&t_med=on&t_ch=display&t_con=programmatic&t_re=west&t_bud=corp&t_d=all&t_plc=West_Gen_Onc_P37NWYY&t_sz=300 x 250&t_dur=na&t_ag=mkl&t_crt=na&t_ctv=300x250-HTML5_Bryce Pursuing Cancer&t_mod=cpm&t_src=&t_tar=na&t_aud=na&&gad_source=7"
+    },
+    {
+      "domain": "medscape.org",
+      "count": 316,
+      "sample_url": "https://www.medscape.org/s/viewarticle/flu-factor-catalyzing-awareness-and-effective-communication-2025a1000s9u?faf=1&ecd=wgt_pul_mscpedu_nov_display_id12080073-300x250_hcp_us&nid=fiZz03tEMF60fsBEvL3tdA==|PP"
+    },
+    {
+      "domain": "ib6andcancer.com",
+      "count": 315,
+      "sample_url": "https://www.ib6andcancer.com?cmp=242699776&sid=8954051&pid=432394065"
+    },
+    {
+      "domain": "seniorplanet.org",
+      "count": 314,
+      "sample_url": "https://seniorplanet.org/ai/?utm_source=MSFT_remnant_ads&utm_medium=MSN_desktop&utm_campaign=300x250#guide"
+    },
+    {
+      "domain": "chime.com",
+      "count": 313,
+      "sample_url": "https://www.chime.com/apply-savings?ad=display_dv360_existingtargeting&utm_source=dv360&utm_medium=display&&gad_source=7"
+    },
+    {
+      "domain": "quicken.com",
+      "count": 313,
+      "sample_url": "https://www.quicken.com/lp/dg/simplifi-budgets/?utm_source=facebook&utm_medium=cpc&utm_campaign=Quicken - MM - PFM Prospecting - Adv+ - PFM Purchase CAPI - Dec '25&utm_term=Quicken - MM - PFM Purchase CAPI - Adv+&utm_content=Quicken_PFM_January26_Static_Prospecting_January-Bridge-Smart-Budget-Meme-Dragon&utm_id=120237526965960307&fbclid=IwZXh0bgNhZW0BMABhZGlkAasvZnQOZXNicmlkETFPMHRmODdtM29lVnpFZTJic3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHvCIQ8LemxEMHq7SdgvgfYQwatcDXHxyiZYTYoYZyIbTaazT1JTIfBWAI8w"
+    },
+    {
+      "domain": "healthcare.ascension.org",
+      "count": 312,
+      "sample_url": "https://healthcare.ascension.org/find-care/location/emergency-rooms/manhattan--kansas?utm_source=sponsorship&utm_medium=display&utm_campaign=ksman-accessandambulatory-access&utm_term=q1fy26&utm_content=gen-&&gad_source=7"
+    },
+    {
+      "domain": "vspdirect.com",
+      "count": 312,
+      "sample_url": "https://www.vspdirect.com/why-vsp/?utm_source=StackAdapt&utm_medium=olv-video&utm_campaign=EmptyingNest&utm_content=VSP_OLV_Extra40_learn-more"
+    },
+    {
+      "domain": "pestlab.co",
+      "count": 309,
+      "sample_url": "https://pestlab.co/products/pestlab-banish-ants-for-good?variant=43749932695606&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&tw_source=google&tw_adid=&tw_campaign=22935492860&tw_kwdid=&gad_source=5&gad_campaignid=22939999167&gclid=EAIaIQobChMI_ofspNDzkQMVUAQcAB0-zgm2EAEYASACEgKj2vD_BwE"
+    },
+    {
+      "domain": "upmc.com",
+      "count": 309,
+      "sample_url": "https://www.upmc.com/?utm_campaign=mr4700-brand&utm_source=wtae&utm_medium=display&utm_content=standard-brand&dclid=CI2Yi7Gx9pADFdTLGAIdbcYyOQ&gad_source=7&gad_campaignid=23010318157"
+    },
+    {
+      "domain": "ustacoaching.com",
+      "count": 309,
+      "sample_url": "https://www.ustacoaching.com/en/home.html?cid=ESPNBannerAds_20250821_chotr_brco_owgen_ctawn_endci"
+    },
+    {
+      "domain": "zoryve.com",
+      "count": 309,
+      "sample_url": "https://www.zoryve.com/atopic-derm"
+    },
+    {
+      "domain": "mjhlifesciences.com",
+      "count": 308,
+      "sample_url": "http://www.mjhlifesciences.com"
+    },
+    {
+      "domain": "modmed.com",
+      "count": 308,
+      "sample_url": "https://www.modmed.com/?&gad_source=7"
+    },
+    {
+      "domain": "www2.guthealthwellness.com",
+      "count": 304,
+      "sample_url": "https://www2.guthealthwellness.com/cid/701Vo00001EnwFCIAZ?utm_content=site_source_{sourceid}_placement_breitbart.com&utm_term=ad_id_797642982474_adset_id_190618779342_campaign_id_23580891589_&subid1=Cj0KCQiAtfXMBhDzARIsAJ0jp3BEfH6W5YjTe7F2rSGazpu8n30Rjw2IaFiudaXoHYxQTo_iBsv8JZsaAqEcEALw_wcB&subid2=d&subid3={wbraid}&subid4={gbraid}&subid5=&gad_source=5&gad_campaignid=23580891589&gclid=Cj0KCQiAtfXMBhDzARIsAJ0jp3BEfH6W5YjTe7F2rSGazpu8n30Rjw2IaFiudaXoHYxQTo_iBsv8JZsaAqEcEALw_wcB"
+    },
+    {
+      "domain": "conferenceinsider.us",
+      "count": 303,
+      "sample_url": "https://conferenceinsider.us/43rd-annual-miami-breast-cancer-conference/"
+    },
+    {
+      "domain": "aarp.org",
+      "count": 302,
+      "sample_url": "http://aarp.org?&gad_source=7"
+    },
+    {
+      "domain": "wpengine.com",
+      "count": 300,
+      "sample_url": "https://wpengine.com/?utm_source=webbys&utm_medium=peoples-voice-ad&utm_campaign=peoples-voice"
+    },
+    {
+      "domain": "shingrix.com",
+      "count": 299,
+      "sample_url": "http://www.shingrix.com/show-shingles-whos-boss?cc=d_35YWCJR3UI3073276&mtrc=500012&mcm=500012"
+    },
+    {
+      "domain": "skiidaho.us",
+      "count": 298,
+      "sample_url": "https://skiidaho.us/"
+    },
+    {
+      "domain": "vizz.com",
+      "count": 298,
+      "sample_url": "https://vizz.com?utm_source=condentwk&utm_medium=endemic_display&utm_campaign=LNZ_ACE_DTC_BRA_VZCNSMR_&utm_content=VZP2_STA&&gad_source=7"
+    },
+    {
+      "domain": "aetna.com",
+      "count": 297,
+      "sample_url": "https://www.aetna.com/medicare/compare-plans-enroll/csnp-chronic-condition-special-needs-plans.html"
+    },
+    {
+      "domain": "amazon.com.mx",
+      "count": 297,
+      "sample_url": "https://www.amazon.com.mx/b?ie=UTF8&node=87886850011&ref=comf_ValueQ1-26_DV360_StandarBanner_Balon_na_REC-LOT_320x100&gad_source=7&gad_campaignid=23556638159"
+    },
+    {
+      "domain": "ashpublications.org",
+      "count": 297,
+      "sample_url": "https://ashpublications.org/blood/article/147/1/1/557452/Blood-flowing-stronger-than-ever-after-80-years"
+    },
+    {
+      "domain": "bonsity.com",
+      "count": 296,
+      "sample_url": "https://bonsity.com/hcp"
+    },
+    {
+      "domain": "childrensplace.com",
+      "count": 295,
+      "sample_url": "https://www.childrensplace.com/us/c/easter-shop?CID=display-_-TCPEPSILON-_-35148386-_-440220540-_-249584119&utm_medium=display&utm_source=TCPEPSILON&utm_campaign=35148386&utm_term=440220540&utm_content=249584119&dclid=CP2j7M6945IDFb6oAAAdaAcWJg&gad_source=7&gad_campaignid=23548011764"
+    },
+    {
+      "domain": "yeztugo.com",
+      "count": 295,
+      "sample_url": "https://www.yeztugo.com?utm_source=6200436&utm_medium=display&utm_campaign=33594708&utm_content=33594708;431001073;237553283&utm_term=431001073"
+    },
+    {
+      "domain": "aax-events-cell02-cf.us-east.3px.axp.amazon-adsystem.com",
+      "count": 294,
+      "sample_url": "https://aax-events-cell02-cf.us-east.3px.axp.amazon-adsystem.com/"
+    },
+    {
+      "domain": "outbacktrading.com",
+      "count": 293,
+      "sample_url": "https://www.outbacktrading.com/products/1153-forbes-wool-hat?variant=12735470141493&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&utm_campaign=&utm_term=&utm_medium=cpc&utm_source=google&hsa_acc=3678690772&hsa_src=x&hsa_ad=&hsa_mt=&hsa_grp=&hsa_tgt=&hsa_cam=23334614125&hsa_kw=&hsa_net=adwords&hsa_ver=3&gad_source=5&gad_campaignid=23330598701&gclid=Cj0KCQiA-NHLBhDSARIsAIhe9X1TiwLLXWkt1otUtyecaCL-TkEfqIBa0C0njKgP4zZ1xx4vIejZkjQaA"
+    },
+    {
+      "domain": "related.seektruebalance.net",
+      "count": 291,
+      "sample_url": "https://related.seektruebalance.net/search.cfm?ule=6059&&lgplp=jf75EJ%3AQNQMzJBkj&prvep=g4ztEd5Gptti639Yk9qpGA%3D%3D&ktr=1&vi=1776565858604954355&cq=_WB4d1dON1mfdRf1NJXd%2FqdL1Vf&vsid=4195674574652077&sc=CT&oksu=224&prid=8PRVCXX19&cid=8CU4171JQ&pid=8PO2K7E5K&crid=626183024&https=1&rms=1776565857&size=728x90&ksu=224&ugd=4&tsid=4&asn=21928&radepth=0&kwep=JaPz%26JaW4PTzEZH%26JgNPb.tTZTbb%26Q4U5PEzH%26U%2FJPWVFHzFAbZzH%26U%2FJGP1Ug%25FIT%25TeQ9%25FIb%25TeH%25FIcz%25TeZ%25FIcz%25TezZ%25FIcz%25Tezt%25"
+    },
+    {
+      "domain": "aax-events-cell02-cf.us-west.3px.axp.amazon-adsystem.com",
+      "count": 290,
+      "sample_url": "https://aax-events-cell02-cf.us-west.3px.axp.amazon-adsystem.com/"
+    },
+    {
+      "domain": "avalara.com",
+      "count": 290,
+      "sample_url": "https://www.avalara.com/simplify/en/asset/5-steps-to-managing-sales-tax-compliance-for-exempt-sellers.html?campaignID=701Uz00000vSc4mIAC&utm_campaign=ESTC25 DV360&marketing_channel=display&vendor=dv360&paid_unpaid=paid&target_audience=prospect&&gad_source=7"
+    },
+    {
+      "domain": "travelocity.com",
+      "count": 289,
+      "sample_url": "https://www.travelocity.com/go/hotel/info/16298963?NumRoom=1&NumAdult-Room1=1&daysInFuture=45&stayLength=5"
+    },
+    {
+      "domain": "discoverypoint.com",
+      "count": 287,
+      "sample_url": "https://www.discoverypoint.com/centers/?utm_source=idb&utm_medium=display&utm_campaign=enrollment&utm_term=geo"
+    },
+    {
+      "domain": "stlouischildrens.org",
+      "count": 287,
+      "sample_url": "https://www.stlouischildrens.org/heartcenter?utm_source=google&utm_medium=display&utm_campaign=2025-04-E-SLCH-1951&utm_content=c2_v1_tiny_hearts&gad_campaignid=23052004685&gclid=EAIaIQobChMIrqTg5frdkAMVzJMDCB3DuiAdEAEYASAAEgLtlvD_BwE"
+    },
+    {
+      "domain": "arielbath.com",
+      "count": 286,
+      "sample_url": "https://www.arielbath.com/ariel-bristol-61-in-double-rectangle-sink-vanity-with-white-quartz-countertop-in-grey-h061dwqrvogry?cid=ext-puagova5-18129445642&utm_source=google&utm_medium=cpc&utm_campaign=puagova5_pmax_rev-troas-man_brandedcatchall_na_bofu&utm_term=pmax&utm_content=pmax&utm_adgroup=rev-troas-auto_va-all_cussignal-vanitiesxbrsegenxret_na-na_sdn-all_wholesaler&device=c&gclid=CjwKCAiA24XJBhBXEiwAXElO38m46sNjUGmdSK-__Zw23Zfr8xq9RIF_X112HfiyKDjrspnNH9c0vBoCLI4QAvD_BwE&s_kwcid=al!20368!3!"
+    },
+    {
+      "domain": "xolair.com",
+      "count": 286,
+      "sample_url": "https://www.xolair.com/chronic-spontaneous-urticaria.html"
+    },
+    {
+      "domain": "spectrum.net",
+      "count": 285,
+      "sample_url": "https://www.spectrum.net/mkt/1-year-internet?cmp=BAN_dv360_na_na_33653080_429432154_M-178_na&o=na&p1=8444317750&v=DISNS&leadref=BAN_dv360_na_na_33653080_429432154_M-178_na&&gad_source=7"
+    }
+  ],
+  "healthcare_keywords": [
+    "adverse events",
+    "cardiology",
+    "clinical study",
+    "clinical trial",
+    "diabetes",
+    "diagnosis",
+    "disease",
+    "dosage",
+    "drug information",
+    "fda",
+    "hcp",
+    "healthcare professional",
+    "immunology",
+    "indication",
+    "medicaid",
+    "medicare",
+    "medication",
+    "oncology",
+    "patient",
+    "pharma",
+    "pharmaceutical",
+    "physician",
+    "prescribing",
+    "prescription",
+    "rx",
+    "side effects",
+    "therapy",
+    "treatment"
+  ],
+  "instructions": "For each domain: WebFetch https://<domain>/ with prompt 'Is this a healthcare, pharma, medical, HCP, or patient site? Quote any evidence.' Classify as 'non_healthcare' (confidence high/medium/low), 'healthcare', or 'uncertain'. Only 'non_healthcare' with confidence 'high' will be added to the ignore list. Submit via: python classify_ad_domains.py submit results.json"
+}

@@ -1,0 +1,109 @@
+{
+  "channels": {
+    "web_contents": {
+      "description": "Page visit tracking across all platforms",
+      "platforms": ["chrome", "ios", "macos"],
+      "entry_points": {
+        "chrome": "app/background-scripts/background.js",
+        "ios": "Perxcept Extension/Resources/background-scripts/background.js",
+        "macos": "Perxcept Extension/Resources/script.js"
+      },
+      "backend_endpoint": "POST /api_v2/web_contents/add_webpage",
+      "backend_controller": "WebContentsController",
+      "db_tables": ["extn.web_contents"],
+      "volume_query": "SELECT DATE(visited_timestamp) as dt, COUNT(*) as cnt FROM web_contents WHERE visited_timestamp BETWEEN %(start)s AND %(end)s GROUP BY dt ORDER BY dt",
+      "volume_query_by_platform": "SELECT DATE(visited_timestamp) as dt, c.device_type, COUNT(*) as cnt FROM web_contents wc JOIN clients c ON wc.client_id = c.id WHERE wc.visited_timestamp BETWEEN %(start)s AND %(end)s GROUP BY dt, c.device_type ORDER BY dt",
+      "known_failure_patterns": [
+        "chrome.webNavigation listener not firing (extension disabled/crashed)",
+        "isURLInTrackedDomains returning false (domain list stale)",
+        "MHTML capture timeout",
+        "HTTP 420 disabling all tracking"
+      ]
+    },
+    "ads": {
+      "description": "Display advertisement image capture",
+      "platforms": ["chrome", "ios", "macos"],
+      "entry_points": {
+        "chrome": "app/content-scripts/content.js",
+        "ios": "Perxcept Extension/Resources/content-scripts/content.js",
+        "macos": "Perxcept Extension/Resources/script.js"
+      },
+      "backend_endpoint": "POST /api_v2/ads/",
+      "backend_controller": "AdsController",
+      "db_tables": ["extn.ads", "extn.media"],
+      "volume_query": "SELECT DATE(created_at) as dt, COUNT(*) as cnt FROM ads WHERE created_at BETWEEN %(start)s AND %(end)s GROUP BY dt ORDER BY dt",
+      "data_processing": "process/extension/processImage.js",
+      "known_failure_patterns": [
+        "MutationObserver detached (SPA navigation)",
+        "Image URL domain not in ad_server_domains whitelist",
+        "Destination URL in ad_ignorelist_domains",
+        "Safe-search rejection (adult/violent content)",
+        "RxJS debounce timing issue"
+      ]
+    },
+    "email": {
+      "description": "Email content capture from webmail providers",
+      "platforms": ["chrome", "ios", "macos"],
+      "entry_points": {
+        "chrome": "app/content-scripts/email-capture.js",
+        "ios": "Perxcept Extension/Resources/content-scripts/email-capture.js",
+        "macos": "Perxcept Extension/Resources/email-capture.js"
+      },
+      "backend_endpoint": "POST /api_v2/web_contents/add_email_content",
+      "backend_controller": "WebContentsController",
+      "db_tables": ["extn.web_contents", "extn.emails"],
+      "volume_query": "SELECT DATE(wc.visited_timestamp) as dt, COUNT(*) as cnt FROM web_contents wc JOIN emails e ON wc.id = e.web_content_id WHERE wc.visited_timestamp BETWEEN %(start)s AND %(end)s GROUP BY dt ORDER BY dt",
+      "selectors": {
+        "gmail": { "subject": "h2.hP", "body": "div.a3s.aiL", "from": "span.gD" },
+        "yahoo": { "subject": "[data-test-id='message-subject']", "body": "[data-test-id='message-view-body']" },
+        "outlook": { "subject": "[aria-label*='Message body']", "body": "div.allowTextSelection" },
+        "aol": { "subject": "[data-test-id='message-subject']", "body": "[data-test-id='message-view-body']" }
+      },
+      "known_failure_patterns": [
+        "Gmail DOM restructure breaking selectors",
+        "Content Security Policy blocking content script injection",
+        "Email preview modal not triggering capture",
+        "HTTP 461 disabling email module"
+      ]
+    },
+    "search_results": {
+      "description": "Google SERP capture including organic, paid, AI Overview, AI Mode",
+      "platforms": ["chrome"],
+      "entry_points": {
+        "chrome": "app/content-scripts/sponsoredAd-capture.js"
+      },
+      "backend_endpoint": "POST /api_v2/search-results/",
+      "backend_controller": "SearchResultsController",
+      "db_tables": ["extn.search_queries", "extn.search_results", "extn.ai_responses", "extn.search_ads"],
+      "volume_query": "SELECT DATE(sq.created_at) as dt, COUNT(*) as cnt FROM search_queries sq WHERE sq.created_at BETWEEN %(start)s AND %(end)s GROUP BY dt ORDER BY dt",
+      "selectors_source": "GET /api_v2/search-results/get_selectors (server-overridable, stored in GOOGLE_SELECTORS storage key)",
+      "known_failure_patterns": [
+        "Google DOM restructure (AI Overview layout change)",
+        "Server selector override stale or incorrect",
+        "Medical classification rejecting valid queries",
+        "Redis dedup race condition with ap-server"
+      ]
+    },
+    "social_posts": {
+      "description": "Social media post capture",
+      "platforms": ["chrome", "macos"],
+      "entry_points": {
+        "chrome": "app/content-scripts/content.js",
+        "macos": "Perxcept Extension/Resources/post-capture.js"
+      },
+      "backend_endpoint": "POST /api_v2/web_contents/add_post",
+      "backend_controller": "WebContentsController",
+      "db_tables": ["extn.posts", "extn.background_requests"],
+      "volume_query": "SELECT DATE(created_at) as dt, COUNT(*) as cnt FROM posts WHERE created_at BETWEEN %(start)s AND %(end)s GROUP BY dt ORDER BY dt",
+      "supported_platforms_by_client": {
+        "chrome": ["LinkedIn", "Sermo", "Doximity", "Facebook", "YouTube"],
+        "macos": ["LinkedIn", "Doximity", "Facebook", "Twitter", "Sermo"]
+      },
+      "known_failure_patterns": [
+        "Social platform DOM restructure",
+        "Content script not injecting on SPA navigation",
+        "background_requests queue backlog"
+      ]
+    }
+  }
+}

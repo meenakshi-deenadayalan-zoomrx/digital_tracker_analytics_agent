@@ -1,0 +1,15 @@
+[project]
+name = "dtsa-mcp-server"
+version = "1.0.0"
+description = "DTSA — Digital Tracker Support Agent MCP server for Claude Desktop"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "httpx>=0.27.0",
+    "playwright>=1.40.0",
+    "gitpython>=3.1.0",
+    "sqlalchemy>=2.0.0",
+    "mysql-connector-python>=9.0.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+]

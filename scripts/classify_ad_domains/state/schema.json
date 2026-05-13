@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-04-21T11:34:32.367820",
+  "ads_columns": [
+    {
+      "column_name": "id",
+      "data_type": "int",
+      "nullable": "NO"
+    },
+    {
+      "column_name": "url",
+      "data_type": "text",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "web_content_id",
+      "data_type": "int",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "created",
+      "data_type": "datetime",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "modified",
+      "data_type": "datetime",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "status",
+      "data_type": "enum",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "image_dimensions",
+      "data_type": "varchar",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "image_extension",
+      "data_type": "varchar",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "user_id",
+      "data_type": "int",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "google_annotations",
+      "data_type": "json",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "client_id",
+      "data_type": "int",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "redirect_url",
+      "data_type": "text",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "destination_url",
+      "data_type": "text",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "type",
+      "data_type": "enum",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "is_valuable",
+      "data_type": "tinyint",
+      "nullable": "YES"
+    },
+    {
+      "column_name": "llm_annotation_status",
+      "data_type": "enum",
+      "nullable": "NO"
+    },
+    {
+      "column_name": "user_wave_id",
+      "data_type": "int",
+      "nullable": "YES"
+    }
+  ],
+  "ignore_table_candidates": [
+    "ad_ignorelist_domains"
+  ],
+  "ignore_list_columns": [
+    {
+      "column_name": "id",
+      "data_type": "int"
+    },
+    {
+      "column_name": "name",
+      "data_type": "varchar"
+    },
+    {
+      "column_name": "is_active",
+      "data_type": "tinyint"
+    },
+    {
+      "column_name": "created",
+      "data_type": "datetime"
+    }
+  ]
+}

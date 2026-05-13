@@ -1,0 +1,11 @@
+{
+  "ads_table": "ads",
+  "ads_url_column": "destination_url",
+  "ads_created_column": "created",
+  "ads_status_column": "status",
+  "status_skip_value": "NOT_REQUIRED",
+  "ignore_list_table": "ad_ignorelist_domains",
+  "ignore_list_domain_column": "name",
+  "ignore_list_active_column": "is_active",
+  "lookback_months": 6
+}
