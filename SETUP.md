@@ -1,6 +1,6 @@
-# DTSA MCP Server — Setup Guide
+# DTSA / DTAA MCP Server — Setup Guide
 
-This sets up the DTSA diagnostic agent tools in Claude Desktop.
+This sets up the Digital Tracker agent tools (DTSA diagnostic + DTAA analytics) in Claude Desktop.
 No programming experience required. Follow each step in order.
 
 Jump to your OS:
@@ -14,7 +14,11 @@ Jump to your OS:
 ## What you need before starting
 
 - **Claude Desktop** installed — [claude.ai/download](https://claude.ai/download)
-- The `dtsa-mcp-server` folder (the zip you received from your team)
+- `git` installed — [git-scm.com](https://git-scm.com/downloads)
+- The `dtsa-mcp-server` folder — clone it:
+  ```
+  git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git dtsa-mcp-server
+  ```
 - Your **credentials sheet** from your team:
   - DB host, username, password
   - Phabricator API token and URL
@@ -26,13 +30,20 @@ Estimated time: **20–30 minutes** (including repo cloning)
 
 ## macOS
 
-### Step 1 — Place the folder
+### Step 1 — Clone the repository
 
-1. Double-click the zip to unzip it
-2. Move `dtsa-mcp-server` somewhere permanent (Desktop or Documents)
-   - Do **not** leave it in Downloads — it may get deleted
-3. Find your full path — right-click → **Get Info** → look at **Where**
-   - Example: `/Users/jane/Desktop/dtsa-mcp-server`
+Open **Terminal** (`Cmd+Space` → type `Terminal` → Enter) and run:
+
+```
+git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git ~/Desktop/dtsa-mcp-server
+```
+
+You can replace `~/Desktop/dtsa-mcp-server` with any permanent location you prefer.
+Find your full path afterwards with:
+```
+cd ~/Desktop/dtsa-mcp-server && pwd
+```
+Example result: `/Users/jane/Desktop/dtsa-mcp-server`
 
 ### Step 2 — Install Python 3.10 or later
 
@@ -89,13 +100,14 @@ Each command may take 1–2 minutes. Wait for each to finish.
 ```
 mkdir -p ~/.claude/skills
 cp -r /path/to/dtsa-mcp-server/skills/dtsa* ~/.claude/skills/
+cp -r /path/to/dtsa-mcp-server/skills/dtaa* ~/.claude/skills/
 ```
 
 Verify:
 ```
 ls ~/.claude/skills/
 ```
-You should see: `dtsa  dtsa-database  dtsa-diagnostics  dtsa-selectors  dtsa-ticketing`
+You should see: `dtaa  dtaa-ads  dtaa-ads-metrics  dtaa-emails  dtaa-emails-metrics  dtaa-posts  dtaa-posts-metrics  dtaa-search  dtaa-search-metrics  dtaa-web  dtaa-web-metrics  dtsa  dtsa-database  dtsa-diagnostics  dtsa-selectors  dtsa-ticketing`
 
 ### Step 6 — Configure Claude Desktop
 
@@ -130,21 +142,26 @@ You should see: `dtsa  dtsa-database  dtsa-diagnostics  dtsa-selectors  dtsa-tic
 1. Quit Claude Desktop fully (Claude icon in menu bar → Quit) then reopen
 2. Start a new conversation and type: `What diagnostic tools do you have available?`
 3. You should see 8 tools listed
-4. Type `/dtsa` — the DTSA orchestrator skill should activate
+4. Type `/dtsa` — the DTSA diagnostic skill should activate
+5. Type `/dtaa` — the DTAA analytics skill should activate
 
 ---
 
 ## Windows
 
-### Step 1 — Place the folder
+### Step 1 — Clone the repository
 
-1. Right-click the zip → **Extract All**
-2. Move `dtsa-mcp-server` somewhere permanent, e.g. `C:\Tools\dtsa-mcp-server`
-   - Avoid folder names with spaces
+Open **Command Prompt** (`Win+R` → type `cmd` → Enter) and run:
+
+```
+git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git C:\Tools\dtsa-mcp-server
+```
+
+You can replace `C:\Tools\dtsa-mcp-server` with any permanent location. Avoid folder names with spaces.
 
 ### Step 2 — Install Python 3.10 or later
 
-Open **Command Prompt** (`Win+R` → type `cmd` → Enter):
+In the same Command Prompt:
 
 ```
 python --version
@@ -175,6 +192,7 @@ python -m venv .venv
 ```
 mkdir %USERPROFILE%\.claude\skills
 xcopy /E /I C:\path\to\dtsa-mcp-server\skills\dtsa* %USERPROFILE%\.claude\skills\
+xcopy /E /I C:\path\to\dtsa-mcp-server\skills\dtaa* %USERPROFILE%\.claude\skills\
 ```
 
 ### Step 6 — Configure Claude Desktop
@@ -214,10 +232,10 @@ Same as macOS Step 7.
 
 ## Linux
 
-### Step 1 — Place the folder
+### Step 1 — Clone the repository
 
 ```bash
-unzip dtsa-mcp-server.zip -d ~/tools/
+git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git ~/tools/dtsa-mcp-server
 ```
 
 ### Step 2 — Install Python 3.10 or later
@@ -259,6 +277,7 @@ Fill in your values (same fields as macOS Step 4), save and exit.
 ```bash
 mkdir -p ~/.claude/skills
 cp -r /path/to/dtsa-mcp-server/skills/dtsa* ~/.claude/skills/
+cp -r /path/to/dtsa-mcp-server/skills/dtaa* ~/.claude/skills/
 ```
 
 ### Step 6 — Configure Claude Desktop
@@ -385,7 +404,7 @@ Or ask your team lead to verify you have **Observer** or higher access to each r
 **Playwright crashes on Linux**
 - Run: `.venv/bin/python -m playwright install-deps chromium`
 
-**Skills not activating (`/dtsa` not recognized)**
+**Skills not activating (`/dtsa` or `/dtaa` not recognized)**
 - Verify skills are in `~/.claude/skills/` (macOS/Linux) or `%USERPROFILE%\.claude\skills\` (Windows)
 - Each skill folder must contain a `SKILL.md` file
 
@@ -403,11 +422,21 @@ Any error prints here. Share the output with your team.
 
 ## Keeping it updated
 
-When you receive an updated zip:
-1. **Copy your `.env` out first**
-2. Replace the `dtsa-mcp-server` folder
-3. Re-run Step 3 (dependencies may have changed)
-4. Re-run Step 5 (skills may have been updated)
-5. Restart Claude Desktop
+To get the latest skills and server changes:
 
-Your `.env` is yours — never share it.
+```bash
+# macOS / Linux
+cd /path/to/dtsa-mcp-server
+git pull
+
+# Windows
+cd C:\path\to\dtsa-mcp-server
+git pull
+```
+
+After pulling:
+1. Re-run Step 3 if `requirements.txt` changed (check with `git diff HEAD@{1} requirements.txt`)
+2. Re-run Step 5 to update skills in `~/.claude/skills/`
+3. Restart Claude Desktop
+
+Your `.env` is yours — `git pull` will never overwrite it.
