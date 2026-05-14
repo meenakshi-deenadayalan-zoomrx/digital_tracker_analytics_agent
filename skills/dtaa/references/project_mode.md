@@ -47,6 +47,16 @@ From these results, build two lists:
 - `{disease_only_ids}` — disease_id values where indication_id IS NULL
 - `{specific_indication_ids}` — indication_id values where indication_id IS NOT NULL
 
+> **TA-Agnostic Override Rule**: Before building the disease filter, check whether ANY filter record for this project has zero rows in `report_filters_indications_diseases`:
+> ```sql
+> SELECT rf.id, COUNT(rfid.id) AS disease_row_count
+> FROM report_filters rf
+> LEFT JOIN report_filters_indications_diseases rfid ON rfid.filter_id = rf.id
+> WHERE rf.project_id = {project_id}
+> GROUP BY rf.id;
+> ```
+> If ANY filter record has `disease_row_count = 0` → that filter is brand-only (TA-agnostic). **Skip the disease filter entirely** — apply only the brand filter. Do not intersect the indication IDs from other filter records against a TA-agnostic one, as that would incorrectly exclude brand-tagged content with no disease annotation.
+
 ---
 
 ## Step 3 — Build Disease/Indication Filter
