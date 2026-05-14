@@ -133,7 +133,7 @@ LEFT JOIN tracked_urls turl ON wc.tracked_url_id = turl.id
 -- In outer SELECT and GROUP BY: add dimension column
 ```
 
-## Disease Filter Patterns
+## Disease Filter Patterns (Normal Mode)
 
 ```sql
 -- With disease filter (default):
@@ -148,14 +148,75 @@ LEFT JOIN disease_terms dt ON gad.disease_id = dt.id
 -- Remove disease joins and WHERE conditions
 ```
 
+## Project Mode Adaptations
+
+In Project Mode, filters come from `report_filters_*` tables — not from user-provided text. Replace the patterns above with the ID-based versions below.
+
+### Brand Filter
+```sql
+-- Replace: AND LOWER(bt.standard_name) REGEXP '{brand_regex}'
+-- With:    AND gab.brand_id IN ({brand_ids})
+-- No brand_normalization CASE needed — use GROUP_CONCAT(DISTINCT bt.standard_name) directly
+```
+
+### Disease / Indication Filter
+```sql
+-- Replace the disease_terms REGEXP join with:
+LEFT JOIN gpt_annotations_diseases gad ON ga.id = gad.gpt_annotation_id
+-- Then apply the appropriate filter from report_filters_indications_diseases:
+-- disease-level only:   AND gad.disease_id IN ({disease_only_ids})
+-- indication-specific:  AND gad.indication_id IN ({specific_indication_ids})
+-- mixed:                AND (gad.disease_id IN ({disease_only_ids}) OR gad.indication_id IN ({specific_indication_ids}))
+```
+
+### QC Override — Brands
+Replace `JOIN gpt_annotations_brands gab ON ga.id = gab.gpt_annotation_id`:
+```sql
+JOIN (
+    SELECT gab.gpt_annotation_id,
+           COALESCE(rqb.brand_id, gab.brand_id) AS brand_id
+    FROM gpt_annotations_brands gab
+    LEFT JOIN report_qc_brands rqb
+        ON rqb.gpt_annotations_id = gab.gpt_annotation_id
+        AND rqb.project_id = {project_id}
+) gab ON ga.id = gab.gpt_annotation_id
+JOIN brand_terms bt ON gab.brand_id = bt.id
+```
+
+### QC Override — Disease / Indication
+Replace `LEFT JOIN gpt_annotations_diseases gad ON ga.id = gad.gpt_annotation_id`:
+```sql
+LEFT JOIN (
+    SELECT gad.gpt_annotation_id,
+           COALESCE(rqid.disease_id, gad.disease_id)       AS disease_id,
+           COALESCE(rqid.indication_id, gad.indication_id) AS indication_id
+    FROM gpt_annotations_diseases gad
+    LEFT JOIN report_qc_indications_diseases rqid
+        ON rqid.gpt_annotations_id = gad.gpt_annotation_id
+        AND rqid.project_id = {project_id}
+) gad ON ga.id = gad.gpt_annotation_id
+```
+
+Full SQL reference: `dtaa/references/project_mode.md`
+
 ## Required Parameters
+
+**Normal Mode**:
 - `project_id` — from `projects` table (confirm via HitL)
 - `start_date`, `end_date` — in 'YYYY-MM-DD' format
 - `brands` — list confirmed via HitL discovery
 - `diseases` (optional) — confirmed via HitL
 - `should_include_null_diseases` — confirmed with user (default: NO)
 
+**Project Mode** (passed by orchestrator after loading report_filters):
+- `project_id` — resolved from project name
+- `start_date`, `end_date` — provided by user
+- `brand_ids` — from `report_filters_brands`
+- `disease_only_ids` — disease_ids where indication_id IS NULL in `report_filters_indications_diseases`
+- `specific_indication_ids` — indication_ids where indication_id IS NOT NULL
+
 ## References
 - Base template (CTE + no-CTE reference): `dtaa/references/sov_base_template.md`
+- Project Mode SQL patterns: `dtaa/references/project_mode.md`
 - Schema: `dtaa/references/schema.md`
 - Guidelines: `dtaa/references/guidelines.md`
