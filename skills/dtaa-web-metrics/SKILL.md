@@ -13,13 +13,17 @@ description: "Web contents channel metrics: Share of Attention, Reach, and Frequ
 ## Why Share of Attention (Not SOV)
 Web contents captures page duration — a user spending 10 minutes on a brand page is more valuable than a 10-second visit. SOV counts exposures; SoA weights by time × annotation weight.
 
-Each web content group can mention multiple brands with different weights (from `gpt_annotations_diseases_brands.weight`). A page with 60% brand A weight and 40% brand B weight contributes accordingly to each brand's attention.
+Each web content group can mention multiple brands with different weights (from `gpt_annotations_disease_brand_weights.weight`). A page with 60% brand A weight and 40% brand B weight contributes accordingly to each brand's attention.
 
 ## Annotation Join Path (Unique to Web)
 ```
 web_contents → web_content_groups → gpt_annotations (entity_type='WEB_CONTENT_GROUP')
-                                   → gpt_annotations_diseases_brands (for weights)
+                                   → gpt_annotations_disease_brand_weights (brand_id + disease_id + weight)
+                                   → brand_terms ON gadbw.brand_id = bt.id
+                                   → disease_terms ON gadbw.disease_id = dt.id
 ```
+
+> **⚠️ Critical**: For WEB_CONTENT_GROUP annotations, `gpt_annotations_brands` is NOT populated (returns 0 rows). The table `gpt_annotations_diseases_brands` does not exist. Use `gpt_annotations_disease_brand_weights` as the single join for brand, disease, and weight.
 
 ## Standard Share of Attention Query (1D — by brand)
 
@@ -48,7 +52,7 @@ FROM (
     FROM (SELECT DISTINCT user_id FROM (
             SELECT wc.user_id,
                 CASE {brand_normalization} ELSE bt.standard_name END AS brand_name,
-                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadb.weight, 1)) AS brand_seconds,
+                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 1)) AS brand_seconds,
                 COUNT(DISTINCT wc.id) AS visits
             FROM users u
             JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
@@ -56,11 +60,9 @@ FROM (
             JOIN web_contents wc ON u.id = wc.user_id
             JOIN web_content_groups wcg ON wc.web_content_group_id = wcg.id
             JOIN gpt_annotations ga ON ga.entity_id = wcg.id AND ga.entity_type = 'WEB_CONTENT_GROUP'
-            JOIN gpt_annotations_brands gab ON ga.id = gab.gpt_annotation_id
-            JOIN brand_terms bt ON gab.brand_id = bt.id
+            JOIN gpt_annotations_disease_brand_weights gadbw ON gadbw.gpt_annotation_id = ga.id
+            JOIN brand_terms bt ON gadbw.brand_id = bt.id
             {disease_joins}
-            LEFT JOIN gpt_annotations_diseases_brands gadb
-                ON ga.id = gadb.gpt_annotation_id AND gadb.brand_id = gab.brand_id {disease_weight_join}
             WHERE wc.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
               AND wc.type IN ('WEB_PAGE', 'HTML_WEB_PAGE')
               AND wc.user_wave_id IS NULL
@@ -71,7 +73,7 @@ FROM (
     CROSS JOIN (SELECT DISTINCT brand_name FROM (
             SELECT wc.user_id,
                 CASE {brand_normalization} ELSE bt.standard_name END AS brand_name,
-                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadb.weight, 1)) AS brand_seconds,
+                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 1)) AS brand_seconds,
                 COUNT(DISTINCT wc.id) AS visits
             FROM users u
             JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
@@ -79,11 +81,9 @@ FROM (
             JOIN web_contents wc ON u.id = wc.user_id
             JOIN web_content_groups wcg ON wc.web_content_group_id = wcg.id
             JOIN gpt_annotations ga ON ga.entity_id = wcg.id AND ga.entity_type = 'WEB_CONTENT_GROUP'
-            JOIN gpt_annotations_brands gab ON ga.id = gab.gpt_annotation_id
-            JOIN brand_terms bt ON gab.brand_id = bt.id
+            JOIN gpt_annotations_disease_brand_weights gadbw ON gadbw.gpt_annotation_id = ga.id
+            JOIN brand_terms bt ON gadbw.brand_id = bt.id
             {disease_joins}
-            LEFT JOIN gpt_annotations_diseases_brands gadb
-                ON ga.id = gadb.gpt_annotation_id AND gadb.brand_id = gab.brand_id {disease_weight_join}
             WHERE wc.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
               AND wc.type IN ('WEB_PAGE', 'HTML_WEB_PAGE')
               AND wc.user_wave_id IS NULL
@@ -94,7 +94,7 @@ FROM (
     LEFT JOIN (
         SELECT wc.user_id,
             CASE {brand_normalization} ELSE bt.standard_name END AS brand_name,
-            SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadb.weight, 1)) AS brand_seconds,
+            SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 1)) AS brand_seconds,
             COUNT(DISTINCT wc.id) AS visits
         FROM users u
         JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
@@ -102,11 +102,9 @@ FROM (
         JOIN web_contents wc ON u.id = wc.user_id
         JOIN web_content_groups wcg ON wc.web_content_group_id = wcg.id
         JOIN gpt_annotations ga ON ga.entity_id = wcg.id AND ga.entity_type = 'WEB_CONTENT_GROUP'
-        JOIN gpt_annotations_brands gab ON ga.id = gab.gpt_annotation_id
-        JOIN brand_terms bt ON gab.brand_id = bt.id
+        JOIN gpt_annotations_disease_brand_weights gadbw ON gadbw.gpt_annotation_id = ga.id
+        JOIN brand_terms bt ON gadbw.brand_id = bt.id
         {disease_joins}
-        LEFT JOIN gpt_annotations_diseases_brands gadb
-            ON ga.id = gadb.gpt_annotation_id AND gadb.brand_id = gab.brand_id {disease_weight_join}
         WHERE wc.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
           AND wc.type IN ('WEB_PAGE', 'HTML_WEB_PAGE')
           AND wc.user_wave_id IS NULL
@@ -134,19 +132,20 @@ ORDER BY share_of_attention_pct DESC;
 
 ## Disease Join Patterns for Web
 
+> `gpt_annotations_disease_brand_weights` already carries `disease_id` — no separate `gpt_annotations_diseases` join is needed. Resolve disease name directly from `gadbw.disease_id`.
+
 ```sql
 -- With disease filter (default):
-LEFT JOIN gpt_annotations_diseases gad ON ga.id = gad.gpt_annotation_id
-LEFT JOIN disease_terms dt ON gad.disease_id = dt.id
--- {disease_weight_join}: AND gadb.disease_id = gad.disease_id
+-- {disease_joins}: JOIN disease_terms dt ON gadbw.disease_id = dt.id
 -- {disease_filter}: AND LOWER(dt.standard_name) REGEXP '{disease_regex}'
 
--- With TA agnostic included:
--- {disease_filter}: AND (LOWER(dt.standard_name) REGEXP '{disease_regex}' OR dt.standard_name IS NULL)
+-- With TA agnostic included (include content not tied to a specific disease):
+-- {disease_joins}: LEFT JOIN disease_terms dt ON gadbw.disease_id = dt.id
+-- {disease_filter}: AND (LOWER(dt.standard_name) REGEXP '{disease_regex}' OR gadbw.disease_id IS NULL)
 
 -- Without disease filter:
--- Skip gpt_annotations_diseases join; keep gpt_annotations_diseases_brands for weights
--- {disease_weight_join}: (empty)
+-- {disease_joins}: (empty — gadbw already joined, no disease_terms needed)
+-- {disease_filter}: (empty)
 ```
 
 ## 2D Share of Attention (Brand × Website)
@@ -175,8 +174,8 @@ FROM web_contents wc
 JOIN user_speciality_mappings usm ON wc.user_id = usm.user_id
 JOIN web_content_groups wcg ON wc.web_content_group_id = wcg.id
 JOIN gpt_annotations ga ON ga.entity_id = wcg.id AND ga.entity_type = 'WEB_CONTENT_GROUP'
-JOIN gpt_annotations_brands gab ON ga.id = gab.gpt_annotation_id
-JOIN brand_terms bt ON gab.brand_id = bt.id
+JOIN gpt_annotations_disease_brand_weights gadbw ON gadbw.gpt_annotation_id = ga.id
+JOIN brand_terms bt ON gadbw.brand_id = bt.id
 WHERE wc.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
   AND wc.type IN ('WEB_PAGE', 'HTML_WEB_PAGE')
   AND wc.user_wave_id IS NULL
@@ -184,6 +183,41 @@ WHERE wc.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
   AND LOWER(bt.standard_name) REGEXP '{brand_regex}'
 GROUP BY bt.standard_name
 ORDER BY reach DESC;
+```
+
+## Sample Size Query
+
+Run this after every SoA query. Use the same filters as the main query.
+
+```sql
+-- Run 1: TL size
+SELECT COUNT(DISTINCT npi) AS tl_size FROM project_target_list WHERE project_id = {project_id}
+
+-- Run 2: Universe N + total visits
+SELECT COUNT(DISTINCT wc.user_id) AS n_hcps_reached, COUNT(DISTINCT wc.id) AS n_total_visits
+FROM web_contents wc
+JOIN users u ON wc.user_id = u.id
+JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
+JOIN user_speciality_mappings usm ON wc.user_id = usm.user_id
+JOIN web_content_groups wcg ON wc.web_content_group_id = wcg.id
+JOIN gpt_annotations ga ON ga.entity_id = wcg.id AND ga.entity_type = 'WEB_CONTENT_GROUP'
+JOIN gpt_annotations_disease_brand_weights gadbw ON gadbw.gpt_annotation_id = ga.id
+JOIN brand_terms bt ON gadbw.brand_id = bt.id
+{disease_joins}
+WHERE wc.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
+  AND wc.type IN ('WEB_PAGE', 'HTML_WEB_PAGE')
+  AND wc.user_wave_id IS NULL
+  AND usm.speciality_id NOT IN (28, 30)
+  AND LOWER(bt.standard_name) REGEXP '{brand_regex}'
+  {disease_filter}
+```
+
+Display below the results table:
+```
+**Sample Sizes**
+- TL: {tl_size} HCPs
+- Universe N (HCPs with ≥1 visit): {n_hcps_reached}
+- Total visits: {n_total_visits}
 ```
 
 ## Required Parameters
