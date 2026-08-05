@@ -1,4 +1,7 @@
-mcp>=1.0.0
+# Pinned to the 1.x line: mcp 2.0.0 removed Server.list_tools / Server.call_tool,
+# which mcp_server.py registers its 9 tools through. An unpinned install picks up
+# 2.0 and the server fails at import. Migrating to the 2.0 API is separate work.
+mcp>=1.26,<2
 httpx>=0.27.0
 playwright>=1.40.0
 gitpython>=3.1.0
