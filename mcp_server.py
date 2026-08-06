@@ -25,6 +25,7 @@ from mcp.types import TextContent, Tool
 from filesystem_service import DtsaFilesystemService
 from github_service import DtsaGithubService
 from mysql_service import DtsaMysqlService
+from synapse_mysql_service import SynapseMysqlService
 from phabricator_service import DtsaPhabricatorService
 from playwright_service import DtsaPlaywrightService
 
@@ -189,6 +190,22 @@ async def list_tools() -> list[Tool]:
             },
         ),
         Tool(
+            name="synapse_mysql_read",
+            description=(
+                "Execute a read-only SQL query against the Synapse DB (community-data.zoomrx.com, zoomrx schema). "
+                "MUST be a SELECT statement. Max 100 rows returned."
+            ),
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "Parameterized SQL SELECT with %(param)s placeholders"},
+                    "params": {"type": "object", "description": "Parameter values dict for the query placeholders", "default": {}},
+                    "max_rows": {"type": "integer", "description": "Max rows to return (default 100, absolute max 100)", "default": 100},
+                },
+                "required": ["query"],
+            },
+        ),
+        Tool(
             name="dtsa_phabricator_create_task",
             description="Create a Phabricator Maniphest task with DTSA diagnostic findings.",
             inputSchema={
@@ -226,6 +243,12 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
             result = await DtsaFilesystemService.grep_in_repo(**arguments)
         elif name == "dtsa_list_repo_files":
             result = await DtsaFilesystemService.list_repo_files(**arguments)
+        elif name == "synapse_mysql_read":
+            result = await SynapseMysqlService.execute_read_query(
+                query=arguments["query"],
+                params=arguments.get("params", {}),
+                max_rows=min(arguments.get("max_rows", 100), 100),
+            )
         elif name == "dtsa_phabricator_create_task":
             result = await DtsaPhabricatorService.create_task(**arguments)
         else:

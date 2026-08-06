@@ -25,5 +25,12 @@ class Settings(BaseSettings):
     DTSA_PHABRICATOR_API_TOKEN: str = ""
     DTSA_PHABRICATOR_API_URL: str = ""
 
+    # Synapse DB (community-data read access)
+    SYNAPSE_DB_HOST: str = ""
+    SYNAPSE_DB_PORT: int = 3306
+    SYNAPSE_DB_NAME: str = "zoomrx"
+    SYNAPSE_DB_USERNAME: str = ""
+    SYNAPSE_DB_PASSWORD: str = ""
+
 
 env = Settings()
