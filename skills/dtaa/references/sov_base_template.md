@@ -8,6 +8,20 @@ SOV is computed as the **average individual user SOV** across **all users who sa
 
 > **Old approach (deprecated)**: simple JOIN between `user_brand_exposures` and `user_total_exposures` — excluded zero-exposure users, inflating SOV for niche brands.
 
+### Do not switch to impressions-based SOV
+
+`ROUND(AVG(individual_sov) * 100, 2)` is the definition on **every** channel —
+ads, emails, posts, and search. Keep them consistent.
+
+Do not replace it with `SUM(exposures) / SUM(SUM(exposures)) OVER () * 100`.
+That weights by volume, so high-activity HCPs dominate, and it answers a
+different question than "a brand's share of the average HCP's exposure."
+
+The argument that surfaces periodically is that per-user SOV "should sum to
+100%." That is not a defect and does not override the definition — confirmed
+2026-08-06. If a change is genuinely wanted, it is a methodology decision for the
+analyst, applied across all four channels at once, not a per-query fix.
+
 ---
 
 ## 1D SOV Template (Brand ranking by Share of Voice)
