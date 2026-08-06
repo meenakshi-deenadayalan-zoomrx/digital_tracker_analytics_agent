@@ -11,14 +11,16 @@ This is the repo that gets shared with teammates. Keep it clean.
 | Belongs here | Goes elsewhere |
 |---|---|
 | `skills/dtaa*` — 13 analytics skills | Tracking-issue diagnostics → `../dtsa-agent` |
-| MCP server code | Query results, xlsx/html artifacts → `../dt-analytics` |
-| Schema and query references | PRDs, wireframes, decks → `../dt-docs` |
-| | Dashboard monitoring → `../AG_Jupyter_Dashboards` |
+| MCP server code | Everything an analysis produces → `../analysis/<name>/` |
+| Schema and query references | Dashboard monitoring → `../../AG_Jupyter_Dashboards` |
 
-**Never write analysis outputs into this repo.** If a session produces a
-spreadsheet, an HTML artifact, or a results write-up, it goes to `dt-analytics`.
-`.gitignore` blocks `*.xlsx`, `*.html`, `*.csv`, and `*.sql` here as a backstop,
-but the rule is the point, not the backstop.
+**Never write analysis outputs into this repo.** Spreadsheets, HTML artifacts,
+results write-ups, PRDs — all of it goes to `../analysis/`, one folder per
+analysis. `.gitignore` blocks `*.xlsx`, `*.html`, `*.csv`, and `*.sql` here as a
+backstop, but the rule is the point, not the backstop.
+
+Before writing artifacts anywhere, ask whether to keep them and in which analysis
+folder — see `~/.claude/CLAUDE.md`.
 
 ## Durable knowledge belongs in the repo, not in memory
 
