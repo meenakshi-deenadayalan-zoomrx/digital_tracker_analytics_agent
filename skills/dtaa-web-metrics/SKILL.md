@@ -185,19 +185,17 @@ GROUP BY bt.standard_name
 ORDER BY reach DESC;
 ```
 
-## Sample Size Query
+## Sample Sizes — MANDATORY after every SoA query
 
-Run this after every SoA query. Use the same filters as the main query.
+**Always run this immediately after any SoA/Reach/Frequency result. Never present SoA numbers without sample sizes.**
+
+If no `project_target_list` filter is used (no project_id), omit the `ptl` join and use the specialty filter as the universe definition.
 
 ```sql
--- Run 1: TL size
-SELECT COUNT(DISTINCT npi) AS tl_size FROM project_target_list WHERE project_id = {project_id}
-
--- Run 2: Universe N + total visits
+-- Universe N (HCPs with ≥1 brand web visit matching filters)
 SELECT COUNT(DISTINCT wc.user_id) AS n_hcps_reached, COUNT(DISTINCT wc.id) AS n_total_visits
 FROM web_contents wc
 JOIN users u ON wc.user_id = u.id
-JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
 JOIN user_speciality_mappings usm ON wc.user_id = usm.user_id
 JOIN web_content_groups wcg ON wc.web_content_group_id = wcg.id
 JOIN gpt_annotations ga ON ga.entity_id = wcg.id AND ga.entity_type = 'WEB_CONTENT_GROUP'
@@ -212,13 +210,15 @@ WHERE wc.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
   {disease_filter}
 ```
 
-Display below the results table:
+Display immediately below the SoA results table:
 ```
-**Sample Sizes**
-- TL: {tl_size} HCPs
-- Universe N (HCPs with ≥1 visit): {n_hcps_reached}
-- Total visits: {n_total_visits}
+**Sample Sizes (Web)**
+- Universe N (HCPs with ≥1 DLBCL web visit): {n_hcps_reached}
+- Total page visits: {n_total_visits}
 ```
+
+> If a `project_target_list` join is used, also report TL size:
+> `SELECT COUNT(DISTINCT npi) AS tl_size FROM project_target_list WHERE project_id = {project_id}`
 
 ## Required Parameters
 - `project_id` — from `projects` table (confirm via HitL)

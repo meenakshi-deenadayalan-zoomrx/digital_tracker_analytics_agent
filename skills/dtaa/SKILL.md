@@ -31,6 +31,8 @@ Detect **channel** (ads / web / emails / posts / search) and **query type** (exp
 | Posts + exploratory | `/dtaa-posts` |
 | Search results/queries + SOV / Reach / Frequency | `/dtaa-search-metrics` |
 | Search + exploratory | `/dtaa-search` |
+| MedAI conversation extraction (HCP queries, OpenEvidence, AI responses from webpages) | `/dtaa-chat-extractor` |
+| MedAI conversations from a supplied Excel/CSV of captured page text | `/dtaa-chat-parser` |
 | Metric requested, channel unclear | Ask user which channel before routing |
 | Multi-channel question | Load each relevant channel skill in sequence |
 

@@ -148,6 +148,38 @@ Date dimension:
 DATE_FORMAT(ct.received_date, '%Y-%m') AS dimension
 ```
 
+## Sample Sizes — MANDATORY after every SOV query
+
+**Always run this immediately after any SOV/Reach/Frequency result. Never present SOV numbers without sample sizes.**
+
+If no `project_target_list` filter is used (no project_id), omit the `ptl` join and use the specialty filter as the universe definition.
+
+```sql
+-- Universe N (HCPs with ≥1 brand email matching filters)
+SELECT COUNT(DISTINCT ct.user_id) AS n_hcps_reached, COUNT(DISTINCT ct.id) AS n_total_emails
+FROM emails ct
+JOIN users u ON ct.user_id = u.id
+JOIN user_speciality_mappings usm ON ct.user_id = usm.user_id
+JOIN gpt_annotations ga ON ga.entity_id = ct.id AND ga.entity_type = 'EMAIL'
+JOIN gpt_annotations_brands gab ON ga.id = gab.gpt_annotation_id
+JOIN brand_terms bt ON gab.brand_id = bt.id
+{disease_joins}
+WHERE ct.received_date BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
+  AND usm.speciality_id NOT IN (28, 30)
+  AND LOWER(bt.standard_name) REGEXP '{brand_regex}'
+  {disease_filter}
+```
+
+Display immediately below the SOV results table:
+```
+**Sample Sizes (Emails)**
+- Universe N (HCPs with ≥1 DLBCL email): {n_hcps_reached}
+- Total emails: {n_total_emails}
+```
+
+> If a `project_target_list` join is used, also report TL size:
+> `SELECT COUNT(DISTINCT npi) AS tl_size FROM project_target_list WHERE project_id = {project_id}`
+
 ## Required Parameters
 - `project_id` — from `projects` table (confirm via HitL)
 - `start_date`, `end_date` — in 'YYYY-MM-DD' format

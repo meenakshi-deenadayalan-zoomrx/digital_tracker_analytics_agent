@@ -15,12 +15,40 @@
 **Date column**: `created`
 **Entity type in gpt_annotations**: `AD`
 
+**`llm_annotation_status` semantics**:
+- `NOT_REQUIRED` — set when the ad's `redirect_url` matches an active domain in `ad_ignorelist_domains`. Deliberate skip, not a failure. ~84% of ads each month; a stable share, not an anomaly.
+- `NEW` — never sent to the LLM. For `type='EMAIL'` this is a permanent terminal state (see below), not a transient backlog.
+- `PROCESSED` / `PROCESSING` / `PROCESSING_FAILED` — normal pipeline states.
+
+**`type='EMAIL'` ads are never LLM-annotated**: zero rows in `gpt_annotations` for EMAIL-type ads across the entire table history (since 2022). They only ever sit in `NEW` or `NOT_REQUIRED`. OCR/keyword extraction *does* run for them — `extracted_texts` and `annotations` are populated normally via the `media` join. Only the `gpt_annotations` (LLM) step is missing. Exclude EMAIL-type ads from any SOV/Reach/Frequency query that depends on `gpt_annotations`, or the ads channel will silently undercount.
+
+### `ad_ignorelist_domains`
+`id`(PK), `name`(VARCHAR — domain), `is_active`(TINYINT), `created`(DATETIME)
+
+**Purpose**: Drives `ads.llm_annotation_status = 'NOT_REQUIRED'` — an ad whose `redirect_url` matches an active domain here is skipped by the annotation pipeline.
+**Perf warning**: Do NOT verify this with `redirect_url LIKE CONCAT('%', d.name, '%')` — the non-sargable join times out even on a single day of ads.
+
 ### `web_contents`
 `id`(PK), `user_id`(FK), `absolute_url`(TEXT), `duration`(TIME), `visited_timestamp`(DATETIME), `created`(DATETIME), `status`(ENUM), `type`(ENUM: WEB_PAGE/EMAIL_CAMPAIGN/AD_SOURCE_URL/HTML_WEB_PAGE/POST), `timezone`(VARCHAR), `closed_timestamp`(DATETIME), `tracked_url_id`(FK), `session`(INT), `client_id`(FK), `web_content_group_id`(FK), `user_wave_id`(INT)
 
 **Mandatory filter**: `type IN ('WEB_PAGE', 'HTML_WEB_PAGE')`
 **Date column**: `created`
 **Annotation join path**: `web_contents.web_content_group_id` → `web_content_groups.id` → `gpt_annotations` (entity_type = `WEB_CONTENT_GROUP`)
+
+### `extracted_texts`
+`id`(PK), `entity_id`(INT), `entity_type`(ENUM: WEB_CONTENT/WEB_CONTENT_TITLE/MEDIA/POST_HEADER/POST_CONTENT/AD_SAFETY_INFO/WEB_CONTENT_DESCRIPTION/POST_ACCOUNT_NAME), `text`(MEDIUMTEXT), `status`(ENUM), `created`(DATETIME), `modified`(DATETIME)
+
+**Join** (ads): `media.entity_id = ads.id AND media.entity_type = 'AD'`, then `extracted_texts.entity_id = media.id AND extracted_texts.entity_type = 'MEDIA'`
+
+### `annotations` (keyword/OCR layer — distinct from `gpt_annotations`)
+`id`(PK), `entity_id`(INT), `entity_type`(ENUM: same set as `extracted_texts`), `term`(VARCHAR), `root_name`(VARCHAR), `label`(VARCHAR), `term_frequency`(INT), `noise`(TINYINT), `created`(DATETIME), `modified`(DATETIME)
+
+**Not the same as `gpt_annotations`**: this is the pre-LLM keyword/term extraction layer. An entity can have `annotations` rows while having no `gpt_annotations` row at all (this is exactly the case for EMAIL-type ads).
+**Join** (ads): same `media` hop as `extracted_texts` above, with `entity_type = 'MEDIA'`.
+
+**Join** (web contents): `extracted_texts.entity_id = web_contents.id AND extracted_texts.entity_type = 'WEB_CONTENT'`
+**Purpose**: Raw text extracted from visited webpages; used for MedAI conversation extraction (`/dtaa-chat-extractor`)
+**Note**: Uses the entity pattern (same as `gpt_annotations`) — NOT a `web_content_id` column. A web_content_id may have zero or one extracted_texts row. Use INNER JOIN to restrict to pages with extracted text.
 
 ### `emails`
 `id`(PK), `web_content_id`(FK), `subject`(VARCHAR), `sender`(VARCHAR), `sender_email`(VARCHAR), `received_date`(DATETIME), `created`(DATETIME), `user_id`(FK), `client_id`(FK), `sender_category`(ENUM: MEDICAL_REPRESENTATIVE/MANUFACTURER/THIRD_PARTY_WEBSITE), `ad_embedded_email`(ENUM: UNKNOWN/YES/NO)

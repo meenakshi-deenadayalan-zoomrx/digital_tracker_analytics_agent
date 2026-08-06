@@ -151,6 +151,39 @@ LEFT JOIN disease_terms dt ON gad.disease_id = dt.id
 -- WHERE: AND (LOWER(dt.standard_name) REGEXP '{disease_regex}' OR dt.standard_name IS NULL)
 ```
 
+## Sample Sizes — MANDATORY after every SOV query
+
+**Always run this immediately after any SOV/Reach/Frequency result. Never present SOV numbers without sample sizes.**
+
+If no `project_target_list` filter is used (no project_id), omit the `ptl` join and use the specialty filter as the universe definition.
+
+```sql
+-- Universe N (HCPs with ≥1 brand search result matching filters)
+SELECT COUNT(DISTINCT sr.user_id) AS n_hcps_reached, COUNT(DISTINCT sr.id) AS n_total_results
+FROM search_results sr
+JOIN users u ON sr.user_id = u.id
+JOIN user_speciality_mappings usm ON sr.user_id = usm.user_id
+JOIN gpt_annotations ga ON ga.entity_id = sr.id AND ga.entity_type = 'SEARCH_RESULT'
+JOIN gpt_annotations_brands gab ON ga.id = gab.gpt_annotation_id
+JOIN brand_terms bt ON gab.brand_id = bt.id
+{disease_joins}
+WHERE sr.created BETWEEN '{start_date} 00:00:00' AND '{end_date} 23:59:59'
+  AND usm.speciality_id NOT IN (28, 30)
+  AND sr.type IN ('{search_types}')
+  AND LOWER(bt.standard_name) REGEXP '{brand_regex}'
+  {disease_filter}
+```
+
+Display immediately below the SOV results table:
+```
+**Sample Sizes (Search)**
+- Universe N (HCPs with ≥1 DLBCL search result): {n_hcps_reached}
+- Total search results: {n_total_results}
+```
+
+> If a `project_target_list` join is used, also report TL size:
+> `SELECT COUNT(DISTINCT npi) AS tl_size FROM project_target_list WHERE project_id = {project_id}`
+
 ## Required Parameters
 - `project_id` — from `projects` table (confirm via HitL)
 - `start_date`, `end_date` — in 'YYYY-MM-DD' format
