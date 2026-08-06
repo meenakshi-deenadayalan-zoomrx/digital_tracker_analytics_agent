@@ -20,8 +20,20 @@ env/
 skills/.claude/
 .claude/
 
-# Data files
+# Personal memory — does not belong in a shared repo. Durable facts go into
+# skill references or CLAUDE.md instead, since memory does not survive a clone.
+memory/
+
+# GSD planning artifacts — regenerate with /gsd-map-codebase rather than
+# committing a snapshot that goes stale.
+.planning/
+
+# Analysis outputs — these belong in ../dt-analytics, not in the skill repo.
 *.csv
+*.xlsx
+*.xls
+*.html
+*.sql
 *.zip
 Archive*/
 

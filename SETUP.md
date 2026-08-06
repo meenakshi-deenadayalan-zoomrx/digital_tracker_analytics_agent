@@ -1,30 +1,26 @@
-# DTSA / DTAA MCP Server — Setup Guide
+# DTAA — Setup Guide
 
-This sets up the Digital Tracker agent tools (DTSA diagnostic + DTAA analytics) in Claude Desktop.
+Sets up the **Digital Tracker Analytics Agent** in Claude Desktop: 13 analytics
+skills plus the MCP server that queries the Digital Tracker databases.
+
 No programming experience required. Follow each step in order.
 
-Jump to your OS:
-- [macOS](#macos)
-- [Windows](#windows)
-- [Linux](#linux)
-- [Getting the repositories](#getting-the-repositories)
+Jump to your OS: [macOS](#macos) · [Windows](#windows) · [Linux](#linux)
+
+> Looking for tracking-issue diagnostics (volume drops, selector breaks)? That is
+> a separate agent — see the `dtsa-agent` repo.
 
 ---
 
 ## What you need before starting
 
-- **Claude Desktop** installed — [claude.ai/download](https://claude.ai/download)
-- `git` installed — [git-scm.com](https://git-scm.com/downloads)
-- The `dtsa-mcp-server` folder — clone it:
-  ```
-  git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git dtsa-mcp-server
-  ```
-- Your **credentials sheet** from your team:
-  - DB host, username, password
-  - Phabricator API token and URL
-- Access to clone the 5 ZoomRx repositories (see [Getting the repositories](#getting-the-repositories))
+- **Claude Desktop** — [claude.ai/download](https://claude.ai/download)
+- **Python 3.10 or later**
+- **git** — [git-scm.com](https://git-scm.com/downloads)
+- A **credentials sheet** from your team: extension DB and Synapse DB host,
+  username, password
 
-Estimated time: **20–30 minutes** (including repo cloning)
+Estimated time: **10–15 minutes**
 
 ---
 
@@ -32,118 +28,114 @@ Estimated time: **20–30 minutes** (including repo cloning)
 
 ### Step 1 — Clone the repository
 
-Open **Terminal** (`Cmd+Space` → type `Terminal` → Enter) and run:
-
-```
-git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git ~/Desktop/dtsa-mcp-server
-```
-
-You can replace `~/Desktop/dtsa-mcp-server` with any permanent location you prefer.
-Find your full path afterwards with:
-```
-cd ~/Desktop/dtsa-mcp-server && pwd
-```
-Example result: `/Users/jane/Desktop/dtsa-mcp-server`
-
-### Step 2 — Install Python 3.10 or later
-
 Open **Terminal** (`Cmd+Space` → type `Terminal` → Enter):
+
+```
+git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git ~/Desktop/dtaa-agent
+```
+
+Any permanent location works. Get the full path with:
+
+```
+cd ~/Desktop/dtaa-agent && pwd
+```
+
+Example result: `/Users/jane/Desktop/dtaa-agent`. Use it wherever this guide says
+`/path/to/dtaa-agent`.
+
+### Step 2 — Check Python
 
 ```
 python3 --version
 ```
 
-If it prints `3.10` or higher, skip to Step 3.
-Otherwise install from [python.org/downloads](https://www.python.org/downloads/).
+`3.10` or higher is fine. Otherwise install from
+[python.org/downloads](https://www.python.org/downloads/).
 
 ### Step 3 — Install dependencies
 
-Replace `/path/to/dtsa-mcp-server` with your actual path from Step 1:
-
 ```
-cd /path/to/dtsa-mcp-server
+cd /path/to/dtaa-agent
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python -m playwright install chromium
 ```
 
-Each command may take 1–2 minutes. Wait for each to finish.
+Takes 1–2 minutes. You do **not** need `playwright install chromium` — that is
+only for the selector-testing tool, which DTAA does not use.
 
 ### Step 4 — Add credentials
 
-1. Copy the example config:
-   ```
-   cp /path/to/dtsa-mcp-server/.env.example /path/to/dtsa-mcp-server/.env
-   ```
-2. Open `.env` in TextEdit: right-click → Open With → TextEdit
-3. Fill in your values (get these from your team's credentials sheet):
+```
+cp /path/to/dtaa-agent/.env.example /path/to/dtaa-agent/.env
+```
 
-   ```
-   DTSA_EXTENSION_DB_READ_HOST=       ← DB server address
-   DTSA_EXTENSION_DB_READ_USERNAME=   ← DB username
-   DTSA_EXTENSION_DB_READ_PASSWORD=   ← DB password
+Open `.env` (right-click → Open With → TextEdit) and fill in:
 
-   DTSA_PHABRICATOR_API_TOKEN=        ← Phabricator API token
-   DTSA_PHABRICATOR_API_URL=          ← e.g. https://phabricator.company.com
-   ```
+```
+DTSA_EXTENSION_DB_READ_HOST=       ← Digital Tracker DB address
+DTSA_EXTENSION_DB_READ_USERNAME=
+DTSA_EXTENSION_DB_READ_PASSWORD=
 
-   For code investigation — clone the repos first (see [Getting the repositories](#getting-the-repositories)), then set:
-   ```
-   DTSA_LOCAL_REPOS_BASE=/path/to/zoomrx-repos
-   ```
-   *(Local clones are strongly recommended — 4 of 5 repos are on Phabricator, not GitHub)*
+SYNAPSE_DB_HOST=                   ← community-data.zoomrx.com
+SYNAPSE_DB_USERNAME=
+SYNAPSE_DB_PASSWORD=
+```
 
-4. Save and close
+Leave the Phabricator and GitHub entries blank — DTAA does not use them.
 
 ### Step 5 — Install skills
 
 ```
 mkdir -p ~/.claude/skills
-cp -r /path/to/dtsa-mcp-server/skills/dtsa* ~/.claude/skills/
-cp -r /path/to/dtsa-mcp-server/skills/dtaa* ~/.claude/skills/
+cp -r /path/to/dtaa-agent/skills/dtaa* ~/.claude/skills/
 ```
 
-Verify:
+Verify with `ls ~/.claude/skills/` — you should see 13 entries:
+
 ```
-ls ~/.claude/skills/
+dtaa  dtaa-ads  dtaa-ads-metrics  dtaa-chat-extractor  dtaa-chat-parser
+dtaa-emails  dtaa-emails-metrics  dtaa-posts  dtaa-posts-metrics
+dtaa-search  dtaa-search-metrics  dtaa-web  dtaa-web-metrics
 ```
-You should see: `dtaa  dtaa-ads  dtaa-ads-metrics  dtaa-emails  dtaa-emails-metrics  dtaa-posts  dtaa-posts-metrics  dtaa-search  dtaa-search-metrics  dtaa-web  dtaa-web-metrics  dtsa  dtsa-database  dtsa-diagnostics  dtsa-selectors  dtsa-ticketing`
 
 ### Step 6 — Configure Claude Desktop
 
-1. Open the config file:
-   ```
-   open -a TextEdit ~/Library/Application\ Support/Claude/claude_desktop_config.json
-   ```
-2. Add this block inside `"mcpServers": {`:
-   ```json
-   "dtsa-tools": {
-     "command": "/path/to/dtsa-mcp-server/.venv/bin/python",
-     "args": ["/path/to/dtsa-mcp-server/mcp_server.py"],
-     "env": {
-       "PYTHONPATH": "/path/to/dtsa-mcp-server"
-     }
-   }
-   ```
-   Example (folder at `/Users/jane/Desktop/dtsa-mcp-server`):
-   ```json
-   "dtsa-tools": {
-     "command": "/Users/jane/Desktop/dtsa-mcp-server/.venv/bin/python",
-     "args": ["/Users/jane/Desktop/dtsa-mcp-server/mcp_server.py"],
-     "env": {
-       "PYTHONPATH": "/Users/jane/Desktop/dtsa-mcp-server"
-     }
-   }
-   ```
-3. Save the file
+```
+open -a TextEdit ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+Add inside `"mcpServers": {`:
+
+```json
+"dtaa": {
+  "command": "/path/to/dtaa-agent/.venv/bin/python",
+  "args": ["/path/to/dtaa-agent/mcp_server.py"],
+  "env": {
+    "PYTHONPATH": "/path/to/dtaa-agent"
+  }
+}
+```
+
+Example for `/Users/jane/Desktop/dtaa-agent`:
+
+```json
+"dtaa": {
+  "command": "/Users/jane/Desktop/dtaa-agent/.venv/bin/python",
+  "args": ["/Users/jane/Desktop/dtaa-agent/mcp_server.py"],
+  "env": {
+    "PYTHONPATH": "/Users/jane/Desktop/dtaa-agent"
+  }
+}
+```
 
 ### Step 7 — Verify
 
-1. Quit Claude Desktop fully (Claude icon in menu bar → Quit) then reopen
-2. Start a new conversation and type: `What diagnostic tools do you have available?`
-3. You should see 8 tools listed
-4. Type `/dtsa` — the DTSA diagnostic skill should activate
-5. Type `/dtaa` — the DTAA analytics skill should activate
+1. Quit Claude Desktop fully (menu bar icon → Quit), then reopen.
+2. New conversation → `What tools do you have available?` → you should see 9,
+   including `dtsa_mysql_read` and `synapse_mysql_read`.
+3. Type `/dtaa` — the analytics orchestrator should activate.
+4. Ask something small, e.g. *"How many web content records were captured last
+   week?"*
 
 ---
 
@@ -151,75 +143,56 @@ You should see: `dtaa  dtaa-ads  dtaa-ads-metrics  dtaa-emails  dtaa-emails-metr
 
 ### Step 1 — Clone the repository
 
-Open **Command Prompt** (`Win+R` → type `cmd` → Enter) and run:
+Open **Command Prompt** (`Win+R` → `cmd` → Enter):
 
 ```
-git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git C:\Tools\dtsa-mcp-server
+git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git C:\Tools\dtaa-agent
 ```
 
-You can replace `C:\Tools\dtsa-mcp-server` with any permanent location. Avoid folder names with spaces.
+Avoid folder names with spaces.
 
-### Step 2 — Install Python 3.10 or later
-
-In the same Command Prompt:
+### Step 2 — Check Python
 
 ```
 python --version
 ```
 
-If it prints `3.10` or higher, skip to Step 3.
-Otherwise install from [python.org/downloads](https://www.python.org/downloads/).
-During install, **check "Add Python to PATH"**.
+If installing fresh, **check "Add Python to PATH"** during setup.
 
 ### Step 3 — Install dependencies
 
 ```
-cd C:\path\to\dtsa-mcp-server
+cd C:\Tools\dtaa-agent
 python -m venv .venv
 .venv\Scripts\pip install -r requirements.txt
-.venv\Scripts\python -m playwright install chromium
 ```
 
 ### Step 4 — Add credentials
 
-1. In the folder, find `.env.example`. Copy it and rename to `.env`
-2. Open `.env` in Notepad: right-click → Open with → Notepad
-3. Fill in your values (same fields as macOS Step 4 above)
-4. Save and close
+Copy `.env.example` to `.env`, open it in Notepad, and fill in the same fields
+listed in macOS Step 4.
 
 ### Step 5 — Install skills
 
 ```
 mkdir %USERPROFILE%\.claude\skills
-xcopy /E /I C:\path\to\dtsa-mcp-server\skills\dtsa* %USERPROFILE%\.claude\skills\
-xcopy /E /I C:\path\to\dtsa-mcp-server\skills\dtaa* %USERPROFILE%\.claude\skills\
+xcopy /E /I C:\Tools\dtaa-agent\skills\dtaa* %USERPROFILE%\.claude\skills\
 ```
 
 ### Step 6 — Configure Claude Desktop
 
-Open the config file:
 ```
 notepad "%APPDATA%\Claude\claude_desktop_config.json"
 ```
 
-Add inside `"mcpServers": {` — use **double backslashes** in every path:
-```json
-"dtsa-tools": {
-  "command": "C:\\path\\to\\dtsa-mcp-server\\.venv\\Scripts\\python.exe",
-  "args": ["C:\\path\\to\\dtsa-mcp-server\\mcp_server.py"],
-  "env": {
-    "PYTHONPATH": "C:\\path\\to\\dtsa-mcp-server"
-  }
-}
-```
+Add inside `"mcpServers": {` — **double every backslash**:
 
-Example (folder at `C:\Tools\dtsa-mcp-server`):
 ```json
-"dtsa-tools": {
-  "command": "C:\\Tools\\dtsa-mcp-server\\.venv\\Scripts\\python.exe",
-  "args": ["C:\\Tools\\dtsa-mcp-server\\mcp_server.py"],
+"dtaa": {
+  "command": "C:\\Tools\\dtaa-agent\\.venv\\Scripts\\python.exe",
+  "args": ["C:\\Tools\\dtaa-agent\\mcp_server.py"],
   "env": {
-    "PYTHONPATH": "C:\\Tools\\dtsa-mcp-server"
+    "PYTHONPATH": "C:\\Tools\\dtaa-agent"
   }
 }
 ```
@@ -235,66 +208,51 @@ Same as macOS Step 7.
 ### Step 1 — Clone the repository
 
 ```bash
-git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git ~/tools/dtsa-mcp-server
+git clone https://github.com/meenakshi-deenadayalan-zoomrx/digital_tracker_analytics_agent.git ~/tools/dtaa-agent
 ```
 
-### Step 2 — Install Python 3.10 or later
+### Step 2 — Check Python
 
 ```bash
 python3 --version
-```
-
-If below 3.10:
-```bash
-# Ubuntu / Debian
-sudo apt install python3 python3-pip python3-venv
-
-# Fedora / RHEL
-sudo dnf install python3 python3-pip
+# Ubuntu/Debian: sudo apt install python3 python3-pip python3-venv
+# Fedora/RHEL:   sudo dnf install python3 python3-pip
 ```
 
 ### Step 3 — Install dependencies
 
 ```bash
-cd /path/to/dtsa-mcp-server
+cd /path/to/dtaa-agent
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python -m playwright install chromium
-.venv/bin/python -m playwright install-deps chromium   # Linux only
 ```
 
 ### Step 4 — Add credentials
 
 ```bash
 cp .env.example .env
-nano .env   # or any text editor
+nano .env
 ```
 
-Fill in your values (same fields as macOS Step 4), save and exit.
+Fill in the same fields listed in macOS Step 4.
 
 ### Step 5 — Install skills
 
 ```bash
 mkdir -p ~/.claude/skills
-cp -r /path/to/dtsa-mcp-server/skills/dtsa* ~/.claude/skills/
-cp -r /path/to/dtsa-mcp-server/skills/dtaa* ~/.claude/skills/
+cp -r /path/to/dtaa-agent/skills/dtaa* ~/.claude/skills/
 ```
 
 ### Step 6 — Configure Claude Desktop
 
 Config file: `~/.config/Claude/claude_desktop_config.json`
 
-```bash
-nano ~/.config/Claude/claude_desktop_config.json
-```
-
-Add inside `"mcpServers": {`:
 ```json
-"dtsa-tools": {
-  "command": "/path/to/dtsa-mcp-server/.venv/bin/python",
-  "args": ["/path/to/dtsa-mcp-server/mcp_server.py"],
+"dtaa": {
+  "command": "/path/to/dtaa-agent/.venv/bin/python",
+  "args": ["/path/to/dtaa-agent/mcp_server.py"],
   "env": {
-    "PYTHONPATH": "/path/to/dtsa-mcp-server"
+    "PYTHONPATH": "/path/to/dtaa-agent"
   }
 }
 ```
@@ -305,70 +263,21 @@ Same as macOS Step 7.
 
 ---
 
-## Getting the repositories
+## What the skills do
 
-The code investigation tools (`dtsa_read_file`, `dtsa_grep_repo`, `dtsa_github_commits`, `dtsa_github_diff`) need local clones of all 5 ZoomRx repositories.
-
-**Where the repos live:**
-
-| Repository | Host |
+| Skill | Use for |
 |---|---|
-| `digitrace-chrome-extension` | Phabricator (`phab.zoomrx.com`) |
-| `perxcept-ios` | Phabricator (`phab.zoomrx.com`) |
-| `perxcept-macos` | Phabricator (`phab.zoomrx.com`) |
-| `perxcept-data-processing-service` | Phabricator (`phab.zoomrx.com`) |
-| `perxcept-ap-server` | GitHub (`github.com/ZoomRx`) |
+| `dtaa` | Orchestrator — routes to the right channel skill |
+| `dtaa-ads` / `dtaa-ads-metrics` | Ads: breakdowns / SOV, Reach, Frequency |
+| `dtaa-web` / `dtaa-web-metrics` | Web: page visits / Share of Attention |
+| `dtaa-emails` / `dtaa-emails-metrics` | Emails: senders, subjects / SOV |
+| `dtaa-posts` / `dtaa-posts-metrics` | Sponsored posts (FB, LinkedIn, YouTube) |
+| `dtaa-search` / `dtaa-search-metrics` | Search ads, organic, AI references |
+| `dtaa-chat-extractor` | MedAI conversations pulled from the database |
+| `dtaa-chat-parser` | MedAI conversations from a supplied Excel/CSV |
 
-**Prerequisites:**
-- `git` installed
-- A Phabricator account on `phab.zoomrx.com` with access to all 4 repos — ask your team lead if you don't have one
-- A GitHub account with access to the ZoomRx org (for `perxcept-ap-server`)
-
-### macOS / Linux
-
-```bash
-bash /path/to/dtsa-mcp-server/clone_repos.sh ~/zoomrx-repos
-```
-
-This clones all 5 repos into `~/zoomrx-repos` (or pass a different path as the argument).
-It is safe to re-run — existing repos will be updated with `git pull` instead of re-cloned.
-
-Then add this to your `.env`:
-```
-DTSA_LOCAL_REPOS_BASE=/Users/yourname/zoomrx-repos
-```
-
-### Windows
-
-```
-C:\path\to\dtsa-mcp-server\clone_repos.bat C:\Tools\zoomrx-repos
-```
-
-Then add this to your `.env`:
-```
-DTSA_LOCAL_REPOS_BASE=C:\Tools\zoomrx-repos
-```
-
-### Manual clone (any OS)
-
-If you prefer to clone manually:
-```bash
-mkdir ~/zoomrx-repos
-git clone http://phab.zoomrx.com/source/digitrace-chrome-extension.git       ~/zoomrx-repos/digitrace-chrome-extension
-git clone http://phab.zoomrx.com/source/perxcept-ios.git                     ~/zoomrx-repos/perxcept-ios
-git clone http://phab.zoomrx.com/source/perxcept-macos.git                   ~/zoomrx-repos/perxcept-macos
-git clone http://phab.zoomrx.com/source/perxcept-data-processing-service.git ~/zoomrx-repos/perxcept-data-processing-service
-git clone https://github.com/ZoomRx/perxcept-ap-server.git                   ~/zoomrx-repos/perxcept-ap-server
-```
-
-### Phabricator clone fails?
-
-If you get a `403` or authentication error on the Phabricator repos:
-1. Log in to `phab.zoomrx.com`
-2. Go to **Settings → VCS Password** and set a password for HTTP git access
-3. Re-run the clone — git will prompt for your Phabricator username and VCS password
-
-Or ask your team lead to verify you have **Observer** or higher access to each repository in Phabricator.
+Start with `/dtaa` and let it route — you rarely need to name a channel skill
+directly.
 
 ---
 
@@ -376,67 +285,60 @@ Or ask your team lead to verify you have **Observer** or higher access to each r
 
 | Variable | What it is | Required |
 |---|---|---|
-| `DTSA_EXTENSION_DB_READ_HOST` | Extension DB hostname | Yes |
+| `DTSA_EXTENSION_DB_READ_HOST` | Digital Tracker DB hostname | Yes |
 | `DTSA_EXTENSION_DB_READ_USERNAME` | DB username | Yes |
 | `DTSA_EXTENSION_DB_READ_PASSWORD` | DB password | Yes |
-| `DTSA_PHABRICATOR_API_TOKEN` | Phabricator Conduit token | Yes |
-| `DTSA_PHABRICATOR_API_URL` | Phabricator base URL | Yes |
-| `DTSA_GITHUB_TOKEN` | GitHub PAT with `repo:read` scope | Optional — only covers `perxcept-ap-server` |
-| `DTSA_LOCAL_REPOS_BASE` | Path to local clones of all 5 repos | **Recommended** |
+| `SYNAPSE_DB_HOST` | Synapse DB (`community-data.zoomrx.com`) | For community data |
+| `SYNAPSE_DB_USERNAME` / `SYNAPSE_DB_PASSWORD` | Synapse credentials | For community data |
+| `DTSA_PHABRICATOR_*`, `DTSA_GITHUB_TOKEN`, `DTSA_LOCAL_REPOS_BASE` | Used by the DTSA support agent | No — leave blank |
 
-**Strongly recommend `DTSA_LOCAL_REPOS_BASE`** — 4 of 5 repos are on Phabricator (not GitHub), so a GitHub token only covers 1 of 5 repositories. Use `clone_repos.sh` / `clone_repos.bat` to get all repos locally.
+The variables keep their `DTSA_` prefix because both agents share one server
+codebase. Nothing about them is DTSA-specific in practice.
 
 ---
 
 ## Troubleshooting
 
 **No tools listed in Claude Desktop**
-- Check `.env` exists and is filled in correctly
-- Check `claude_desktop_config.json` has valid JSON (no trailing commas)
-- Windows: all backslashes must be doubled (`\\`)
+- Check `.env` exists and is filled in
+- Check `claude_desktop_config.json` is valid JSON (no trailing commas)
+- Windows: every backslash must be doubled (`\\`)
 
-**"No module named 'config'"**
-- The `PYTHONPATH` in the config must point to the `dtsa-mcp-server` folder itself
+**`AttributeError: 'Server' object has no attribute 'list_tools'`**
+- Your `mcp` package is 2.x. The server needs the 1.x line. Fix with:
+  `.venv/bin/pip install "mcp>=1.26,<2"` (Windows: `.venv\Scripts\pip`)
 
-**"Connection error" on DB query**
+**`No module named 'config'`**
+- `PYTHONPATH` must point at the `dtaa-agent` folder itself
+
+**Connection error on a query**
 - DB credentials in `.env` are wrong — re-check with your team
 
-**Playwright crashes on Linux**
-- Run: `.venv/bin/python -m playwright install-deps chromium`
+**`/dtaa` not recognized**
+- Skills must be in `~/.claude/skills/` (`%USERPROFILE%\.claude\skills\` on
+  Windows), each folder containing a `SKILL.md`
 
-**Skills not activating (`/dtsa` or `/dtaa` not recognized)**
-- Verify skills are in `~/.claude/skills/` (macOS/Linux) or `%USERPROFILE%\.claude\skills\` (Windows)
-- Each skill folder must contain a `SKILL.md` file
+**Test the server by hand:**
 
-**Test the server manually:**
 ```bash
-# macOS / Linux
-/path/to/dtsa-mcp-server/.venv/bin/python /path/to/dtsa-mcp-server/mcp_server.py
-
-# Windows
-C:\path\to\dtsa-mcp-server\.venv\Scripts\python.exe C:\path\to\dtsa-mcp-server\mcp_server.py
+/path/to/dtaa-agent/.venv/bin/python /path/to/dtaa-agent/mcp_server.py
 ```
-Any error prints here. Share the output with your team.
+
+It will sit waiting for input — that means it started cleanly. Press `Ctrl+C` to
+exit. Any traceback printed instead is the real error; share it with your team.
 
 ---
 
 ## Keeping it updated
 
-To get the latest skills and server changes:
-
 ```bash
-# macOS / Linux
-cd /path/to/dtsa-mcp-server
-git pull
-
-# Windows
-cd C:\path\to\dtsa-mcp-server
+cd /path/to/dtaa-agent
 git pull
 ```
 
 After pulling:
-1. Re-run Step 3 if `requirements.txt` changed (check with `git diff HEAD@{1} requirements.txt`)
-2. Re-run Step 5 to update skills in `~/.claude/skills/`
+1. Re-run Step 3 if `requirements.txt` changed
+2. Re-run Step 5 to refresh `~/.claude/skills/`
 3. Restart Claude Desktop
 
-Your `.env` is yours — `git pull` will never overwrite it.
+Your `.env` is yours — `git pull` never overwrites it.
