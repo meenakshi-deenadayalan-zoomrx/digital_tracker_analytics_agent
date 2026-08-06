@@ -108,5 +108,11 @@ Users are medical experts — leverage their knowledge.
 
 ## References
 - Schema: See `references/schema.md`
-- SQL guidelines: See `references/guidelines.md`
+- SQL guidelines: See `references/guidelines.md` — includes the inline-literal
+  rule for REGEXP and the no-CTE constraint
 - SOV base template: See `references/sov_base_template.md`
+- Brand normalization: See `references/brand_normalization.md` — fills the
+  `{brand_normalization}` placeholder; apply it in every SOV query, or share
+  fragments across duplicate `brand_terms` rows
+- Heavy queries: See `references/heavy_query_patterns.md` — read this **before**
+  writing any multi-channel or per-NPI query, not after the first timeout

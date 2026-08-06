@@ -57,6 +57,33 @@ WHERE usm.speciality_id IN (29, 32)
 - Case-insensitive by default due to utf8mb4_0900_ai_ci collation
 - Example: `WHERE LOWER(bt.standard_name) REGEXP 'opdivo|nivolumab|bms.936558'`
 
+### Inline literals, never `%(param)s`, in REGEXP
+
+`dtsa_mysql_read` does **not** substitute `%(param)s` placeholders inside
+`CASE WHEN ... REGEXP %(param)s`. MySQL receives the literal string `%(param)s`
+and throws a 1064 syntax error.
+
+Hardcode regex patterns directly in the SQL:
+
+```sql
+-- correct
+WHEN LOWER(bt.standard_name) REGEXP '^vylo|zolbetuximab' THEN 'VYLOY'
+
+-- fails with 1064
+WHEN LOWER(bt.standard_name) REGEXP %(vyloy_pattern)s THEN 'VYLOY'
+```
+
+Parameterization is fine for simple scalars like `project_id`, but when in doubt
+use inline literals throughout. Brand normalization patterns live in
+`brand_normalization.md`.
+
+### No CTEs
+
+`dtsa_mysql_read` rejects queries starting with `WITH`. Every query must begin
+with `SELECT` and use nested subqueries instead. Window functions
+(`ROW_NUMBER`, `SUM`/`COUNT` `OVER`) **are** supported — see
+`heavy_query_patterns.md`.
+
 ---
 
 ## SQL Aggregation Strategy
