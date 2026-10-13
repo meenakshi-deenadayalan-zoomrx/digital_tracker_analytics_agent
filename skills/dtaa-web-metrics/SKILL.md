@@ -15,6 +15,13 @@ Web contents captures page duration — a user spending 10 minutes on a brand pa
 
 Each web content group can mention multiple brands with different weights (from `gpt_annotations_disease_brand_weights.weight`). A page with 60% brand A weight and 40% brand B weight contributes accordingly to each brand's attention.
 
+> **Weight scale is 0–100, not 0–1.** `gpt_annotations_disease_brand_weights.weight` is a
+> percentage (verified 2026-10-13: min 0, max 100, per-page sum across a brand's disease rows
+> never exceeds 100). Always multiply by `weight / 100`. The denominator in the SoA formula is
+> *unweighted* total seconds, so forgetting the `/ 100` inflates the numerator 100×. A page can
+> carry the same brand under several diseases; summing `weight` across those rows per brand is
+> correct (it stays ≤ 100), but never SUM raw `wc.duration` across them — dedupe by `wc.id` first.
+
 ## Annotation Join Path (Unique to Web)
 ```
 web_contents → web_content_groups → gpt_annotations (entity_type='WEB_CONTENT_GROUP')
@@ -52,7 +59,7 @@ FROM (
     FROM (SELECT DISTINCT user_id FROM (
             SELECT wc.user_id,
                 CASE {brand_normalization} ELSE bt.standard_name END AS brand_name,
-                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 1)) AS brand_seconds,
+                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 100) / 100) AS brand_seconds,
                 COUNT(DISTINCT wc.id) AS visits
             FROM users u
             JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
@@ -73,7 +80,7 @@ FROM (
     CROSS JOIN (SELECT DISTINCT brand_name FROM (
             SELECT wc.user_id,
                 CASE {brand_normalization} ELSE bt.standard_name END AS brand_name,
-                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 1)) AS brand_seconds,
+                SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 100) / 100) AS brand_seconds,
                 COUNT(DISTINCT wc.id) AS visits
             FROM users u
             JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
@@ -94,7 +101,7 @@ FROM (
     LEFT JOIN (
         SELECT wc.user_id,
             CASE {brand_normalization} ELSE bt.standard_name END AS brand_name,
-            SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 1)) AS brand_seconds,
+            SUM(TIME_TO_SEC(wc.duration) * COALESCE(gadbw.weight, 100) / 100) AS brand_seconds,
             COUNT(DISTINCT wc.id) AS visits
         FROM users u
         JOIN project_target_list ptl ON u.npi = ptl.npi AND ptl.project_id = {project_id}
