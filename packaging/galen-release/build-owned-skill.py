@@ -5,7 +5,7 @@ only individually declared binary asset members. Unknown source files, missing
 inputs and content drift fail closed. Outputs are never installed or published.
 """
 from pathlib import Path, PurePosixPath
-import argparse, hashlib, json, re, stat, zipfile
+import argparse, hashlib, io, json, re, stat, zipfile
 
 def digest(data):return hashlib.sha256(data).hexdigest()
 def member_path(name,directory=False):
@@ -15,9 +15,21 @@ def member_path(name,directory=False):
     if not value or any(p in ('','..','.')for p in value.split('/')):raise ValueError('unsafe_member_path')
     if directory!=name.endswith('/'):raise ValueError('directory_kind_mismatch')
     return value
+def plain_path(value):
+    # Inspect the caller's lexical path before resolve() can hide a link.
+    candidate=Path(value)
+    for part in [candidate,*candidate.parents]:
+        if part.is_symlink()or(hasattr(part,'is_junction')and part.is_junction()):
+            raise ValueError('linked_path_preserved')
+        try:attributes=getattr(part.lstat(),'st_file_attributes',0)
+        except FileNotFoundError:continue
+        if attributes&getattr(stat,'FILE_ATTRIBUTE_REPARSE_POINT',1024):
+            raise ValueError('linked_path_preserved')
+    return candidate.resolve()
+
 def source_path(root,relative):
     member_path(relative)
-    target=root/relative
+    target=plain_path(root/relative)
     if not target.resolve().is_relative_to(root):raise ValueError('source_path_outside_root')
     for parent in [target,*target.parents]:
         if parent==root.parent:break
@@ -25,7 +37,8 @@ def source_path(root,relative):
     if not target.is_file()or not stat.S_ISREG(target.stat().st_mode):raise ValueError('missing_source_file')
     return target
 def load_manifest(root):
-    manifest=json.loads((root/'PACKAGING.json').read_text(encoding='utf-8'))
+    root=plain_path(root)
+    manifest=json.loads(source_path(root,'PACKAGING.json').read_text(encoding='utf-8'))
     if manifest.get('schemaVersion')!=1:raise ValueError('unsupported_manifest_schema')
     if not isinstance(manifest.get('name'),str)or'/'in manifest['name']:raise ValueError('invalid_skill_name')
     names=set();case_names=set();source_names=set();entries=manifest.get('entries',[])
@@ -55,19 +68,19 @@ def load_manifest(root):
     actual=set()
     for path in root.rglob('*'):
         if '__pycache__'in path.parts:continue
-        if path.is_symlink()or(hasattr(path,'is_junction')and path.is_junction()):raise ValueError('linked_source_preserved')
+        if path.is_symlink()or(hasattr(path,'is_junction')and path.is_junction())or getattr(path.lstat(),'st_file_attributes',0)&getattr(stat,'FILE_ATTRIBUTE_REPARSE_POINT',1024):raise ValueError('linked_source_preserved')
         if path.is_file():actual.add(path.relative_to(root).as_posix())
     if actual-administrative!=source_names:raise ValueError('undeclared_or_missing_source_files')
     return manifest
 def build(root,output,asset_input=None):
-    root=Path(root).resolve();output=Path(output).resolve()
+    root=plain_path(root);output=plain_path(output)
     if output.exists():raise ValueError('existing_output_preserved')
     manifest=load_manifest(root)
     if output==root or output.is_relative_to(root):raise ValueError('output_must_be_outside_source')
     assets=[r for r in manifest['entries']if r['kind']=='asset']
     supplied={};input_root=None
     if asset_input:
-        file=Path(asset_input).resolve();input_root=file.parent
+        file=plain_path(asset_input);input_root=file.parent
         supplied=json.loads(file.read_text(encoding='utf-8')).get('archives',{})
     if assets and not asset_input:raise ValueError('explicit_asset_inputs_required')
     archives={};contents={};total=0
@@ -84,9 +97,10 @@ def build(root,output,asset_input=None):
                 if ident not in archives:
                     record=supplied[ident];path=Path(record['path'])
                     if not path.is_absolute():path=input_root/path
+                    path=plain_path(path)
                     raw=path.read_bytes()
                     if digest(raw)!=asset['archiveSha256']or record.get('sha256')!=asset['archiveSha256']:raise ValueError('external_archive_hash_mismatch')
-                    archive=zipfile.ZipFile(path)
+                    archive=zipfile.ZipFile(io.BytesIO(raw))
                     names=archive.namelist()
                     if len(names)!=len(set(names)):raise ValueError('duplicate_external_archive_member')
                     archives[ident]=archive
