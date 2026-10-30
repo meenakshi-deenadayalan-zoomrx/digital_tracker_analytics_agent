@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "name": "digital-tracker",
+  "version": 15,
+  "owner": "Meenakshi",
+  "sourceAuthority": "digital_tracker_analytics_agent/packaging/skills/digital-tracker",
+  "origin": "exact_verified_released_text_source_with_external_binary_assets",
+  "originalBuildCommit": null,
+  "historicalEditableSourceGitBinding": "not_established_by_this_import",
+  "releaseArchive": {
+    "sha256": "bc907275d8118cfbf12edf6c2f9c60c5c946df49582031dc808e30b8b6e09c2a",
+    "sourceInput": "packaging/galen-control/artifacts/consulting/digital-tracker/15/digital-tracker.zip"
+  },
+  "publishedSkillMetadataChanged": false,
+  "candidateFilesChanged": false
+}

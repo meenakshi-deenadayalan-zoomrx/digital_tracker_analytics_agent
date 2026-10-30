@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "name": "digital-tracker-diagnostics",
+  "version": 9,
+  "owner": "Meenakshi",
+  "sourceAuthority": "digital_tracker_analytics_agent/packaging/skills/digital-tracker-diagnostics",
+  "origin": "exact_verified_released_text_source_with_external_binary_assets",
+  "originalBuildCommit": null,
+  "historicalEditableSourceGitBinding": "not_established_by_this_import",
+  "releaseArchive": {
+    "sha256": "a8edd20bc4023b1ad7f9e7d308971b5a4487192dc3dacffcfab44fc070999175",
+    "sourceInput": "packaging/galen-control/artifacts/consulting/digital-tracker-diagnostics/9/digital-tracker-diagnostics.zip"
+  },
+  "publishedSkillMetadataChanged": false,
+  "candidateFilesChanged": false
+}
