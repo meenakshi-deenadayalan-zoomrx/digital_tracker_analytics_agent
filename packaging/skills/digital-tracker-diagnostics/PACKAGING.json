@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "name": "digital-tracker-diagnostics",
+  "version": 9,
+  "owner": {
+    "name": "Meenakshi",
+    "scope": "user_assigned_skill_and_dedicated_source_owner"
+  },
+  "sourceAuthority": "digital_tracker_analytics_agent/packaging/skills/digital-tracker-diagnostics",
+  "releaseOrigin": {
+    "archiveSha256": "a8edd20bc4023b1ad7f9e7d308971b5a4487192dc3dacffcfab44fc070999175",
+    "version": 9,
+    "memberCount": 49
+  },
+  "buildContract": {
+    "sourceInputs": "only_declared_local_text_and_source",
+    "binaryInputs": "explicit_external_hash_bound_archive_members",
+    "undeclaredFiles": "reject",
+    "oldArchiveSourceFallback": false
+  },
+  "entries": [
+    {
+      "member": "digital-tracker-diagnostics/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/agents/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/SKILL.md",
+      "bytes": 5547,
+      "sha256": "29e4706f1f772191589e9c038fa753ae0ebbbbde7d1f4c624e419adb1d06aa48",
+      "kind": "source",
+      "source": "codex/SKILL.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/clone_repos.bat",
+      "bytes": 2053,
+      "sha256": "5c57d1a2bb86aa8d3483cb4a4332df5fe3d9a2294758b20744a2420346b9babb",
+      "kind": "source",
+      "source": "codex/scripts/clone_repos.bat"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/clone_repos.sh",
+      "bytes": 2185,
+      "sha256": "7b0fd2b9aa8396ba2cdf62de6d2aff1e250156c9c71fafa3fc93fc2bff6f5072",
+      "kind": "source",
+      "source": "codex/scripts/clone_repos.sh"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/diagnostic-actions.py",
+      "bytes": 8398,
+      "sha256": "03c0ee05b7555010ab3fadf091a272daa5b4b17930d2a027a4dcad120844b427",
+      "kind": "source",
+      "source": "codex/scripts/diagnostic-actions.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/optional.requirements.txt",
+      "bytes": 110,
+      "sha256": "22ebb5e35826bd90791a54a242e083130b113d0bdaaa8ad3f64994d12292aff4",
+      "kind": "source",
+      "source": "codex/scripts/optional.requirements.txt"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/server/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/server/config.py",
+      "bytes": 510,
+      "sha256": "27b6dbb94735f05c385c37e192f5943255519ab1a20ddb55e5601214bb0fa4da",
+      "kind": "source",
+      "source": "codex/scripts/server/config.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/server/filesystem_service.py",
+      "bytes": 11558,
+      "sha256": "856c928ba2b81c34dc6deae195ae406c5acbb6fd53bb426d2fda29d9bc314a88",
+      "kind": "source",
+      "source": "codex/scripts/server/filesystem_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/server/github_service.py",
+      "bytes": 9664,
+      "sha256": "33e9971c9131e2468eebf3f02b7ecb6f6b4b594a2289e58f86c4ecaf80ad2877",
+      "kind": "source",
+      "source": "codex/scripts/server/github_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/server/phabricator_service.py",
+      "bytes": 2084,
+      "sha256": "fe0478d0f9e41289a404ab93a69abdc000e60ba33b5c808119f684cbaea91c92",
+      "kind": "source",
+      "source": "codex/scripts/server/phabricator_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/server/playwright_service.py",
+      "bytes": 2718,
+      "sha256": "ebcb9cd10385343f74f2fd6d84df7233b70764935de539636c6c170004c8a2b7",
+      "kind": "source",
+      "source": "codex/scripts/server/playwright_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/scripts/server/windows_repo_scope.py",
+      "bytes": 15374,
+      "sha256": "4e4e5c7c6e6806f49ffbb9242014a2eeaf3e80465e7bb225f8ac3ac130db9df5",
+      "kind": "source",
+      "source": "codex/scripts/server/windows_repo_scope.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/configuration.md",
+      "bytes": 5050,
+      "sha256": "b1efd0e0dc899a5fc860d7e005a23f567deaa1d2ca52d56d5fccc65e01ed84e8",
+      "kind": "source",
+      "source": "codex/references/configuration.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/database.md",
+      "bytes": 5457,
+      "sha256": "0f6ec466520d82f504b1ed91a858449c09dc019e63d25a8f573c9bfe686e4191",
+      "kind": "source",
+      "source": "codex/references/database.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/diagnostics.md",
+      "bytes": 9324,
+      "sha256": "c68771c1bf615fcdc14a3f7a04c8776786d118963cf8f6e736e9842c90f51621",
+      "kind": "source",
+      "source": "codex/references/diagnostics.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/remote-sql.md",
+      "bytes": 4143,
+      "sha256": "38f27fd1476b306f71bc02e17b350fe32cbe2609d90d1fb2948ea61cefa0cf67",
+      "kind": "source",
+      "source": "codex/references/remote-sql.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/schema-live-check.md",
+      "bytes": 2915,
+      "sha256": "397397a5b1ecfe2200672adc7d2e472065c4fcb4e22762718046473435b7782a",
+      "kind": "source",
+      "source": "codex/references/schema-live-check.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/selectors.md",
+      "bytes": 4678,
+      "sha256": "1909f7153dcfc921a7082cc5099cd27460f0c7e65d936106cebc0c997490c669",
+      "kind": "source",
+      "source": "codex/references/selectors.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/service_map.json",
+      "bytes": 5878,
+      "sha256": "d04fe5e18543a8adc535af3c20846167f39f95a06f1dd84aeae3d0c946a57e61",
+      "kind": "source",
+      "source": "codex/references/service_map.json"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/references/ticketing.md",
+      "bytes": 3744,
+      "sha256": "f30d9d5e536dc7ca9ac2d43a541bd88fd31f7dfbf86df54244b49933ed53b4d2",
+      "kind": "source",
+      "source": "codex/references/ticketing.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/codex/agents/openai.yaml",
+      "bytes": 188,
+      "sha256": "197df9f6dba12839f1fe13ca8ecf2ce616ca487b3b9b28129b20cbf677f29544",
+      "kind": "source",
+      "source": "codex/agents/openai.yaml"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/SKILL.md",
+      "bytes": 5781,
+      "sha256": "bca5e27e7e32b133c86eea13dff0b91c386199b3e41811288e826c3ad1aa4665",
+      "kind": "source",
+      "source": "claude/SKILL.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/clone_repos.bat",
+      "bytes": 2053,
+      "sha256": "5c57d1a2bb86aa8d3483cb4a4332df5fe3d9a2294758b20744a2420346b9babb",
+      "kind": "source",
+      "source": "claude/scripts/clone_repos.bat"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/clone_repos.sh",
+      "bytes": 2185,
+      "sha256": "7b0fd2b9aa8396ba2cdf62de6d2aff1e250156c9c71fafa3fc93fc2bff6f5072",
+      "kind": "source",
+      "source": "claude/scripts/clone_repos.sh"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/diagnostic-actions.py",
+      "bytes": 8398,
+      "sha256": "03c0ee05b7555010ab3fadf091a272daa5b4b17930d2a027a4dcad120844b427",
+      "kind": "source",
+      "source": "claude/scripts/diagnostic-actions.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/optional.requirements.txt",
+      "bytes": 110,
+      "sha256": "22ebb5e35826bd90791a54a242e083130b113d0bdaaa8ad3f64994d12292aff4",
+      "kind": "source",
+      "source": "claude/scripts/optional.requirements.txt"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/server/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/server/config.py",
+      "bytes": 510,
+      "sha256": "27b6dbb94735f05c385c37e192f5943255519ab1a20ddb55e5601214bb0fa4da",
+      "kind": "source",
+      "source": "claude/scripts/server/config.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/server/filesystem_service.py",
+      "bytes": 11558,
+      "sha256": "856c928ba2b81c34dc6deae195ae406c5acbb6fd53bb426d2fda29d9bc314a88",
+      "kind": "source",
+      "source": "claude/scripts/server/filesystem_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/server/github_service.py",
+      "bytes": 9664,
+      "sha256": "33e9971c9131e2468eebf3f02b7ecb6f6b4b594a2289e58f86c4ecaf80ad2877",
+      "kind": "source",
+      "source": "claude/scripts/server/github_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/server/phabricator_service.py",
+      "bytes": 2084,
+      "sha256": "fe0478d0f9e41289a404ab93a69abdc000e60ba33b5c808119f684cbaea91c92",
+      "kind": "source",
+      "source": "claude/scripts/server/phabricator_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/server/playwright_service.py",
+      "bytes": 2718,
+      "sha256": "ebcb9cd10385343f74f2fd6d84df7233b70764935de539636c6c170004c8a2b7",
+      "kind": "source",
+      "source": "claude/scripts/server/playwright_service.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/scripts/server/windows_repo_scope.py",
+      "bytes": 15374,
+      "sha256": "4e4e5c7c6e6806f49ffbb9242014a2eeaf3e80465e7bb225f8ac3ac130db9df5",
+      "kind": "source",
+      "source": "claude/scripts/server/windows_repo_scope.py"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/configuration.md",
+      "bytes": 5050,
+      "sha256": "b1efd0e0dc899a5fc860d7e005a23f567deaa1d2ca52d56d5fccc65e01ed84e8",
+      "kind": "source",
+      "source": "claude/references/configuration.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/database.md",
+      "bytes": 5457,
+      "sha256": "0f6ec466520d82f504b1ed91a858449c09dc019e63d25a8f573c9bfe686e4191",
+      "kind": "source",
+      "source": "claude/references/database.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/diagnostics.md",
+      "bytes": 9324,
+      "sha256": "c68771c1bf615fcdc14a3f7a04c8776786d118963cf8f6e736e9842c90f51621",
+      "kind": "source",
+      "source": "claude/references/diagnostics.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/remote-sql.md",
+      "bytes": 4143,
+      "sha256": "38f27fd1476b306f71bc02e17b350fe32cbe2609d90d1fb2948ea61cefa0cf67",
+      "kind": "source",
+      "source": "claude/references/remote-sql.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/schema-live-check.md",
+      "bytes": 2915,
+      "sha256": "397397a5b1ecfe2200672adc7d2e472065c4fcb4e22762718046473435b7782a",
+      "kind": "source",
+      "source": "claude/references/schema-live-check.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/selectors.md",
+      "bytes": 4678,
+      "sha256": "1909f7153dcfc921a7082cc5099cd27460f0c7e65d936106cebc0c997490c669",
+      "kind": "source",
+      "source": "claude/references/selectors.md"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/service_map.json",
+      "bytes": 5878,
+      "sha256": "d04fe5e18543a8adc535af3c20846167f39f95a06f1dd84aeae3d0c946a57e61",
+      "kind": "source",
+      "source": "claude/references/service_map.json"
+    },
+    {
+      "member": "digital-tracker-diagnostics/claude/references/ticketing.md",
+      "bytes": 3744,
+      "sha256": "f30d9d5e536dc7ca9ac2d43a541bd88fd31f7dfbf86df54244b49933ed53b4d2",
+      "kind": "source",
+      "source": "claude/references/ticketing.md"
+    }
+  ]
+}
