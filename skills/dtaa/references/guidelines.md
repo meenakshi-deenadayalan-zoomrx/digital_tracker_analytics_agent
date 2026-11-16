@@ -128,6 +128,21 @@ FROM (
 
 ---
 
+## Email Images Live in `ads` (type = 'EMAIL')
+
+- Images inside captured emails are stored as `ads` rows with `type='EMAIL'` (≈10–15k/month),
+  each with one `media` row `entity_type='AD'`. They are not ads.
+- Any ads-channel count that does not join `gpt_annotations` on `entity_type='AD'` must add
+  `AND ads.type != 'EMAIL'`. (Email-ads never get `AD` GPT annotations, so annotation-joined
+  metrics already exclude them.)
+- Email image text: `ads a JOIN media m ON m.entity_type='AD' AND m.entity_id=a.id` →
+  `extracted_texts et ON et.entity_type='MEDIA' AND et.entity_id=m.id`, joined to
+  `emails` on `a.web_content_id = e.web_content_id`.
+- As of 2026-09-29 a PRD proposes moving these to `media.entity_type='EMAIL'`,
+  `entity_id = emails.id`. Re-check the schema before relying on this section.
+
+---
+
 ## NULL Handling
 
 - **Disease NULL = TA agnostic**: No disease tag on an entity means it's not disease-specific

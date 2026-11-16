@@ -72,3 +72,22 @@ still sums to 100%.
 
 Then add the rule here, so it applies to every channel rather than to one
 session's query.
+
+### CD19 CAR-T brands (Yescarta, Kymriah, Breyanzi)
+
+Normalize generic/abbreviation rows to the brand. Verified 2026-11-11; the
+`brand_terms` ids are stable so an id list is cheaper than REGEXP on the hot path.
+
+```sql
+WHEN bt.id IN (133, 24769, 24860)          THEN 'Yescarta'   -- Yescarta, Axi-Cel, axicabtagene ciloleucel
+WHEN bt.id IN (29087, 30375, 47801)        THEN 'Kymriah'    -- kymriah, Tisa-cel, tisagenlecleucel
+WHEN bt.id IN (202, 4399, 71228)           THEN 'Breyanzi'   -- Breyanzi, Lisocabtagene Maraleucel, Lisocabtagenemaraleucel
+WHEN LOWER(bt.standard_name) = 'brevanzi'  THEN 'Breyanzi'   -- OCR variant seen in LBCL ads
+```
+
+Regex equivalent: `^yescarta$|^axi-cel$|^axicabtagene`, `^kymriah$|^tisa-cel$|^tisagenlecleucel$`,
+`^bre[yv]anzi$|^lisocabtagene`. Anchored: `Breyanzi,Kymriah,Tecartus,Yescarta` combo
+rows (class-comparison content) stay separate.
+
+Note: these three are LBCL/other-lymphoma products. In MM they return ~0 rows; the
+MM CAR-Ts are Carvykti (178, 4315, 87758) and Abecma (203).
