@@ -1,9 +1,19 @@
-"""DTSA MCP Server — standalone stdio transport for Claude Desktop.
+"""DTAA MCP Server — stdio transport for the Digital Tracker Analytics Agent.
+
+Exposes read-only SQL access to the two databases the DTAA skills query:
+the Perxcept extension read replica and Synapse.
+
+Kept deliberately thin: service modules pull in SQLAlchemy, which costs ~0.5s
+to import, so they are imported inside call_tool() rather than at module level.
+Nothing but `mcp` itself loads before the initialize handshake — a slow start
+here shows up as "MCP server connection timed out" in the client.
+
+The full support-agent server (GitHub, Phabricator, Playwright, filesystem)
+lives in dtsa-agent, and a copy is kept alongside this file as
+mcp_server_full.py.bak.
 
 Run via:
     python mcp_server.py
-
-Or pointed at directly in claude_desktop_config.json.
 """
 import asyncio
 import json
@@ -12,8 +22,8 @@ import os
 import sys
 from pathlib import Path
 
-# Ensure this directory is on sys.path so local imports resolve
-# regardless of working directory when Claude Desktop launches the process.
+# Ensure this directory is on sys.path so local imports resolve, and that .env
+# is found, regardless of the working directory the client launches us from.
 _HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(_HERE))
 os.chdir(_HERE)
@@ -22,17 +32,20 @@ from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import TextContent, Tool
 
-from filesystem_service import DtsaFilesystemService
-from github_service import DtsaGithubService
-from mysql_service import DtsaMysqlService
-from synapse_mysql_service import SynapseMysqlService
-from phabricator_service import DtsaPhabricatorService
-from playwright_service import DtsaPlaywrightService
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-server = Server("dtsa-tools")
+server = Server("dtaa-tools")
+
+_QUERY_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "query": {"type": "string", "description": "Parameterized SQL SELECT with %(param)s placeholders"},
+        "params": {"type": "object", "description": "Parameter values dict for the query placeholders", "default": {}},
+        "max_rows": {"type": "integer", "description": "Max rows to return (default 100, absolute max 100)", "default": 100},
+    },
+    "required": ["query"],
+}
 
 
 @server.list_tools()
@@ -42,182 +55,20 @@ async def list_tools() -> list[Tool]:
             name="dtsa_mysql_read",
             description=(
                 "Execute a read-only SQL query against the Perxcept extension DB read replica. "
-                "MUST be a SELECT statement returning aggregates (COUNT, GROUP BY). "
-                "Max 100 rows returned. No raw user data."
+                "This is the Digital Tracker database holding ads, emails, posts, search and web "
+                "content capture data. MUST be a SELECT statement returning aggregates "
+                "(COUNT, GROUP BY). Max 100 rows returned. No raw user data."
             ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string", "description": "Parameterized SQL SELECT with %(param)s placeholders"},
-                    "params": {"type": "object", "description": "Parameter values dict for the query placeholders", "default": {}},
-                    "max_rows": {"type": "integer", "description": "Max rows to return (default 100, absolute max 100)", "default": 100},
-                },
-                "required": ["query"],
-            },
-        ),
-        Tool(
-            name="dtsa_github_commits",
-            description=(
-                "Fetch commits from a ZoomRx repository within a time window. "
-                "Repositories: digitrace-chrome-extension, perxcept-ap-server, "
-                "perxcept-ios, perxcept-macos, perxcept-data-processing-service. "
-                "Uses local git repos by default; switches to GitHub API when DTSA_GITHUB_TOKEN is set."
-            ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo_name": {
-                        "type": "string",
-                        "enum": [
-                            "digitrace-chrome-extension",
-                            "perxcept-ap-server",
-                            "perxcept-ios",
-                            "perxcept-macos",
-                            "perxcept-data-processing-service",
-                        ],
-                    },
-                    "since": {"type": "string", "description": "Start datetime ISO 8601"},
-                    "until": {"type": "string", "description": "End datetime ISO 8601"},
-                    "path_filter": {"type": "array", "items": {"type": "string"}, "description": "Only return commits touching these paths"},
-                },
-                "required": ["repo_name", "since", "until"],
-            },
-        ),
-        Tool(
-            name="dtsa_github_diff",
-            description=(
-                "Fetch the full diff for a specific commit in a ZoomRx repository. "
-                "Uses local git repos by default; switches to GitHub API when DTSA_GITHUB_TOKEN is set."
-            ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo_name": {"type": "string"},
-                    "commit_hash": {"type": "string", "description": "Git commit SHA (full or short)"},
-                },
-                "required": ["repo_name", "commit_hash"],
-            },
-        ),
-        Tool(
-            name="dtsa_playwright_selector",
-            description=(
-                "Test a CSS or XPath selector against a live web page using headless Chromium. "
-                "Returns whether elements were found, count, and if bot detection was triggered."
-            ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "url": {"type": "string", "description": "Page URL to test"},
-                    "selector": {"type": "string", "description": "CSS or XPath selector"},
-                    "selector_type": {"type": "string", "enum": ["css", "xpath"], "default": "css"},
-                },
-                "required": ["url", "selector"],
-            },
-        ),
-        Tool(
-            name="dtsa_read_file",
-            description=(
-                "Read the contents of a source file from a local ZoomRx repository. "
-                "Use this to inspect code after identifying a suspicious commit, or to read "
-                "documentation files (README, specs, flow docs) for context. "
-                "Path is relative to DTSA_LOCAL_REPOS_BASE (e.g. 'digitrace-chrome-extension/app/content-scripts/email-capture.js'). "
-                "Use start_line/end_line to read a specific section of a large file."
-            ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "path": {"type": "string", "description": "File path relative to DTSA_LOCAL_REPOS_BASE (repo-name/path/to/file)"},
-                    "start_line": {"type": "integer", "description": "First line to read (1-indexed, default 1)", "default": 1},
-                    "end_line": {"type": "integer", "description": "Last line to read inclusive (omit to read to end of file)"},
-                },
-                "required": ["path"],
-            },
-        ),
-        Tool(
-            name="dtsa_grep_repo",
-            description=(
-                "Search for a regex pattern across all source files in a repository. "
-                "Use this to find where a selector, function, error string, or config value is used "
-                "after a commit diff reveals something suspicious. Returns matching lines with context. "
-                "Scoped to allowed source file types only — no binaries or secrets."
-            ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo_name": {
-                        "type": "string",
-                        "enum": [
-                            "digitrace-chrome-extension",
-                            "perxcept-ap-server",
-                            "perxcept-ios",
-                            "perxcept-macos",
-                            "perxcept-data-processing-service",
-                        ],
-                        "description": "Repository to search in",
-                    },
-                    "pattern": {"type": "string", "description": "Regex pattern to search for"},
-                    "file_glob": {"type": "string", "description": "Glob to filter files (e.g. '**/*.js'). Default: all allowed files.", "default": "**/*"},
-                    "case_sensitive": {"type": "boolean", "description": "Whether the search is case-sensitive (default false)", "default": False},
-                    "context_lines": {"type": "integer", "description": "Lines of context to show around each match (default 2)", "default": 2},
-                },
-                "required": ["repo_name", "pattern"],
-            },
-        ),
-        Tool(
-            name="dtsa_list_repo_files",
-            description=(
-                "List source files in a repository or subdirectory. "
-                "Use this to explore an unfamiliar repo structure or confirm which files exist "
-                "before reading them. Filters out hidden dirs, node_modules, __pycache__, binaries."
-            ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "repo_name": {
-                        "type": "string",
-                        "enum": [
-                            "digitrace-chrome-extension",
-                            "perxcept-ap-server",
-                            "perxcept-ios",
-                            "perxcept-macos",
-                            "perxcept-data-processing-service",
-                        ],
-                    },
-                    "subpath": {"type": "string", "description": "Subdirectory within the repo to list. Omit for repo root.", "default": ""},
-                    "file_glob": {"type": "string", "description": "Glob pattern (e.g. '**/*.js'). Default: all allowed files.", "default": "**/*"},
-                },
-                "required": ["repo_name"],
-            },
+            inputSchema=_QUERY_SCHEMA,
         ),
         Tool(
             name="synapse_mysql_read",
             description=(
-                "Execute a read-only SQL query against the Synapse DB (community-data.zoomrx.com, zoomrx schema). "
+                "Execute a read-only SQL query against the Synapse DB (community-data.zoomrx.com, "
+                "zoomrx schema). Use for panelist attributes such as HCP specialty. "
                 "MUST be a SELECT statement. Max 100 rows returned."
             ),
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string", "description": "Parameterized SQL SELECT with %(param)s placeholders"},
-                    "params": {"type": "object", "description": "Parameter values dict for the query placeholders", "default": {}},
-                    "max_rows": {"type": "integer", "description": "Max rows to return (default 100, absolute max 100)", "default": 100},
-                },
-                "required": ["query"],
-            },
-        ),
-        Tool(
-            name="dtsa_phabricator_create_task",
-            description="Create a Phabricator Maniphest task with DTSA diagnostic findings.",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "title": {"type": "string", "description": "[DTSA] P{N} | channel | platform | symptom"},
-                    "description": {"type": "string", "description": "Full Remarkup-formatted task body"},
-                    "priority": {"type": "string", "enum": ["unbreak_now", "high", "normal", "low"]},
-                    "tags": {"type": "array", "items": {"type": "string"}, "default": [], "description": "Phabricator project PHIDs to tag"},
-                },
-                "required": ["title", "description", "priority"],
-            },
+            inputSchema=_QUERY_SCHEMA,
         ),
     ]
 
@@ -226,37 +77,27 @@ async def list_tools() -> list[Tool]:
 async def call_tool(name: str, arguments: dict) -> list[TextContent]:
     try:
         if name == "dtsa_mysql_read":
+            from mysql_service import DtsaMysqlService
+
             result = await DtsaMysqlService.execute_read_query(
                 query=arguments["query"],
                 params=arguments.get("params", {}),
                 max_rows=min(arguments.get("max_rows", 100), 100),
             )
-        elif name == "dtsa_github_commits":
-            result = await DtsaGithubService.get_commits(**arguments)
-        elif name == "dtsa_github_diff":
-            result = await DtsaGithubService.get_diff(**arguments)
-        elif name == "dtsa_playwright_selector":
-            result = await DtsaPlaywrightService.test_selector(**arguments)
-        elif name == "dtsa_read_file":
-            result = await DtsaFilesystemService.read_file(**arguments)
-        elif name == "dtsa_grep_repo":
-            result = await DtsaFilesystemService.grep_in_repo(**arguments)
-        elif name == "dtsa_list_repo_files":
-            result = await DtsaFilesystemService.list_repo_files(**arguments)
         elif name == "synapse_mysql_read":
+            from synapse_mysql_service import SynapseMysqlService
+
             result = await SynapseMysqlService.execute_read_query(
                 query=arguments["query"],
                 params=arguments.get("params", {}),
                 max_rows=min(arguments.get("max_rows", 100), 100),
             )
-        elif name == "dtsa_phabricator_create_task":
-            result = await DtsaPhabricatorService.create_task(**arguments)
         else:
             result = {"error": f"Unknown tool: {name}"}
 
         return [TextContent(type="text", text=json.dumps(result, default=str))]
     except Exception as e:
-        logger.error(f"[DTSA] Tool call failed for {name}: {e}")
+        logger.error(f"[DTAA] Tool call failed for {name}: {e}")
         return [TextContent(type="text", text=json.dumps({"error": str(e)}))]
 
 

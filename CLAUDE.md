@@ -32,11 +32,11 @@ A teammate cloning this repo inherits the references and nothing else.
 
 ## Duplicated server code — must stay in sync
 
-The 13 server files below are byte-identical copies shared with `../dtsa-agent`.
+The 12 server files below are byte-identical copies shared with `../dtsa-agent`.
 Each repo is self-contained, with its own `.venv` and `.env`.
 
 ```
-mcp_server.py  config.py  dtsa_database.py  mysql_service.py
+config.py  dtsa_database.py  mysql_service.py
 synapse_database.py  synapse_mysql_service.py  filesystem_service.py
 github_service.py  phabricator_service.py  playwright_service.py
 pyproject.toml  requirements.txt  .env.example
@@ -46,8 +46,19 @@ pyproject.toml  requirements.txt  .env.example
 `bash sync-server.sh` copies them across; `bash sync-server.sh --check` reports
 drift. Commit in both repos.
 
+**`mcp_server.py` is the exception — it is intentionally different, never synced.**
+Here it is a lean server for the consulting audience: two read-only SQL tools
+(`dtsa_mysql_read`, `synapse_mysql_read`) and nothing else, with service modules
+imported lazily so startup stays fast. `../dtsa-agent` keeps the full 9-tool
+server (GitHub, Phabricator, Playwright, filesystem). Edit each on its own; do not
+copy one over the other. This server only imports `mysql_service.py` and
+`synapse_mysql_service.py` (and their database/config modules), so changes to
+those shared files still affect it. `github_service.py`, `phabricator_service.py`,
+`playwright_service.py` and `filesystem_service.py` are unused here and stay only
+to keep the shared set identical.
+
 `mcp` is pinned to `>=1.26,<2` — 2.0.0 removed `Server.list_tools`, which
-`mcp_server.py` registers all 9 tools through. Do not relax that pin without
+`mcp_server.py` registers its tools through. Do not relax that pin without
 migrating the server to the 2.0 API.
 
 ## Naming

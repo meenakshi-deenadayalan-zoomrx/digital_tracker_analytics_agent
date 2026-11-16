@@ -10,6 +10,10 @@
 #   bash sync-server.sh             # copy this repo's server files to the sibling
 #
 # Run --check before committing any change to the files listed below.
+#
+# mcp_server.py is deliberately NOT synced. dtaa-agent carries a lean server
+# (2 read-only SQL tools, lazy imports); dtsa-agent carries the full 9-tool one.
+# Syncing it would overwrite one with the other.
 
 set -euo pipefail
 
@@ -28,7 +32,6 @@ if [ ! -d "$SIBLING" ]; then
 fi
 
 FILES=(
-  mcp_server.py
   config.py
   dtsa_database.py
   mysql_service.py
