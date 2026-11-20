@@ -1,0 +1,6 @@
+interface:
+  display_name: "Digital Tracker Analytics"
+  short_description: "Analyze Perxcept channels through native read-only SQL"
+
+policy:
+  allow_implicit_invocation: true

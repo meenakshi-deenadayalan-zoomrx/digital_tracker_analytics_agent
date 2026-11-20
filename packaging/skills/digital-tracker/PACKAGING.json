@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "name": "digital-tracker",
+  "version": 15,
+  "owner": {
+    "name": "Meenakshi",
+    "scope": "user_assigned_skill_and_dedicated_source_owner"
+  },
+  "sourceAuthority": "digital_tracker_analytics_agent/packaging/skills/digital-tracker",
+  "releaseOrigin": {
+    "archiveSha256": "bc907275d8118cfbf12edf6c2f9c60c5c946df49582031dc808e30b8b6e09c2a",
+    "version": 15,
+    "memberCount": 39
+  },
+  "buildContract": {
+    "sourceInputs": "only_declared_local_text_and_source",
+    "binaryInputs": "explicit_external_hash_bound_archive_members",
+    "undeclaredFiles": "reject",
+    "oldArchiveSourceFallback": false
+  },
+  "entries": [
+    {
+      "member": "digital-tracker/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker/claude/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker/codex/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker/codex/agents/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker/codex/references/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker/codex/SKILL.md",
+      "bytes": 7676,
+      "sha256": "3baee8f8742c533e1ec565c42c29185ba2f58a3c4621a394114b310804a3275b",
+      "kind": "source",
+      "source": "codex/SKILL.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/ads-metrics.md",
+      "bytes": 5198,
+      "sha256": "20f210cc68977715a34f0f7d9d453a6c5939da04417bd3f2f9fb45f425d3fd9c",
+      "kind": "source",
+      "source": "codex/references/ads-metrics.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/ads.md",
+      "bytes": 7107,
+      "sha256": "e256a32d7567175579b96bd96d21c6c08f74903c55e28a49fd5dc8fb226476f3",
+      "kind": "source",
+      "source": "codex/references/ads.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/configuration.md",
+      "bytes": 3249,
+      "sha256": "6e9b7a023bd7cca9ccecc0c49693b98e079b7905e363d0207206f4908c557aaa",
+      "kind": "source",
+      "source": "codex/references/configuration.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/emails-metrics.md",
+      "bytes": 8415,
+      "sha256": "842c784a8b2313f52720b9b581faaed4567239e742e605d11eaed28dc9bb035d",
+      "kind": "source",
+      "source": "codex/references/emails-metrics.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/emails.md",
+      "bytes": 6268,
+      "sha256": "a2ce9c1e74f2b325ce3d99c1abf0e20b2ea0f3dbdc866bb7a9d06fd16bc440a6",
+      "kind": "source",
+      "source": "codex/references/emails.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/guidelines.md",
+      "bytes": 6008,
+      "sha256": "5433051eb0fa239c071036953814cff9d8b23d0207cf738ee202410b35e71c5e",
+      "kind": "source",
+      "source": "codex/references/guidelines.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/posts-metrics.md",
+      "bytes": 9183,
+      "sha256": "da0dc5c65325ab42b7987c6dc9eea89b2501d12b4858fd4263d53181867586d7",
+      "kind": "source",
+      "source": "codex/references/posts-metrics.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/posts.md",
+      "bytes": 7261,
+      "sha256": "3694259d8e58e226596dc96ccd8f190a4efb8952b97b9282c5a6fd01afb1d623",
+      "kind": "source",
+      "source": "codex/references/posts.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/remote-sql.md",
+      "bytes": 4143,
+      "sha256": "38f27fd1476b306f71bc02e17b350fe32cbe2609d90d1fb2948ea61cefa0cf67",
+      "kind": "source",
+      "source": "codex/references/remote-sql.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/schema.md",
+      "bytes": 6975,
+      "sha256": "3198697483753dce5becb5db921d6629608e5db5bcd2bbd0efed3e94ef353123",
+      "kind": "source",
+      "source": "codex/references/schema.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/search-metrics.md",
+      "bytes": 6267,
+      "sha256": "145419805d1e7a3a40a9b07829094048064d401478458466171ee0022f93e8e7",
+      "kind": "source",
+      "source": "codex/references/search-metrics.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/search.md",
+      "bytes": 8711,
+      "sha256": "adf3219659a70550264a4c1ba9d79f49d45a0b06348096e2058307ec218dfe78",
+      "kind": "source",
+      "source": "codex/references/search.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/sov_base_template.md",
+      "bytes": 16730,
+      "sha256": "badc9991731bc22c980aef1a446e1647302ee731d039b03426bd2b1131d954f3",
+      "kind": "source",
+      "source": "codex/references/sov_base_template.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/web-metrics.md",
+      "bytes": 12587,
+      "sha256": "5253179954ae77df3026a4fce99a6bb7f929f7b043dcc2f61c055aa8c94232ac",
+      "kind": "source",
+      "source": "codex/references/web-metrics.md"
+    },
+    {
+      "member": "digital-tracker/codex/references/web.md",
+      "bytes": 9833,
+      "sha256": "c0141b30c7f49ebe810307aa082465605f167dab0842fb1b28adac2706faee7b",
+      "kind": "source",
+      "source": "codex/references/web.md"
+    },
+    {
+      "member": "digital-tracker/codex/agents/openai.yaml",
+      "bytes": 176,
+      "sha256": "7510a6e5d32b6f4fbea03bbdd411a1a0484eae462641064bbf019f596aef3422",
+      "kind": "source",
+      "source": "codex/agents/openai.yaml"
+    },
+    {
+      "member": "digital-tracker/claude/references/",
+      "kind": "directory"
+    },
+    {
+      "member": "digital-tracker/claude/SKILL.md",
+      "bytes": 7939,
+      "sha256": "64f621ecb88f1d447c4c5f314424862ca996ebdcf8438eb5c57652bb791bd987",
+      "kind": "source",
+      "source": "claude/SKILL.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/ads-metrics.md",
+      "bytes": 5198,
+      "sha256": "20f210cc68977715a34f0f7d9d453a6c5939da04417bd3f2f9fb45f425d3fd9c",
+      "kind": "source",
+      "source": "claude/references/ads-metrics.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/ads.md",
+      "bytes": 7107,
+      "sha256": "e256a32d7567175579b96bd96d21c6c08f74903c55e28a49fd5dc8fb226476f3",
+      "kind": "source",
+      "source": "claude/references/ads.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/configuration.md",
+      "bytes": 3249,
+      "sha256": "6e9b7a023bd7cca9ccecc0c49693b98e079b7905e363d0207206f4908c557aaa",
+      "kind": "source",
+      "source": "claude/references/configuration.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/emails-metrics.md",
+      "bytes": 8415,
+      "sha256": "842c784a8b2313f52720b9b581faaed4567239e742e605d11eaed28dc9bb035d",
+      "kind": "source",
+      "source": "claude/references/emails-metrics.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/emails.md",
+      "bytes": 6268,
+      "sha256": "a2ce9c1e74f2b325ce3d99c1abf0e20b2ea0f3dbdc866bb7a9d06fd16bc440a6",
+      "kind": "source",
+      "source": "claude/references/emails.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/guidelines.md",
+      "bytes": 6008,
+      "sha256": "5433051eb0fa239c071036953814cff9d8b23d0207cf738ee202410b35e71c5e",
+      "kind": "source",
+      "source": "claude/references/guidelines.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/posts-metrics.md",
+      "bytes": 9183,
+      "sha256": "da0dc5c65325ab42b7987c6dc9eea89b2501d12b4858fd4263d53181867586d7",
+      "kind": "source",
+      "source": "claude/references/posts-metrics.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/posts.md",
+      "bytes": 7261,
+      "sha256": "3694259d8e58e226596dc96ccd8f190a4efb8952b97b9282c5a6fd01afb1d623",
+      "kind": "source",
+      "source": "claude/references/posts.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/remote-sql.md",
+      "bytes": 4143,
+      "sha256": "38f27fd1476b306f71bc02e17b350fe32cbe2609d90d1fb2948ea61cefa0cf67",
+      "kind": "source",
+      "source": "claude/references/remote-sql.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/schema.md",
+      "bytes": 6975,
+      "sha256": "3198697483753dce5becb5db921d6629608e5db5bcd2bbd0efed3e94ef353123",
+      "kind": "source",
+      "source": "claude/references/schema.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/search-metrics.md",
+      "bytes": 6267,
+      "sha256": "145419805d1e7a3a40a9b07829094048064d401478458466171ee0022f93e8e7",
+      "kind": "source",
+      "source": "claude/references/search-metrics.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/search.md",
+      "bytes": 8711,
+      "sha256": "adf3219659a70550264a4c1ba9d79f49d45a0b06348096e2058307ec218dfe78",
+      "kind": "source",
+      "source": "claude/references/search.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/sov_base_template.md",
+      "bytes": 16730,
+      "sha256": "badc9991731bc22c980aef1a446e1647302ee731d039b03426bd2b1131d954f3",
+      "kind": "source",
+      "source": "claude/references/sov_base_template.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/web-metrics.md",
+      "bytes": 12587,
+      "sha256": "5253179954ae77df3026a4fce99a6bb7f929f7b043dcc2f61c055aa8c94232ac",
+      "kind": "source",
+      "source": "claude/references/web-metrics.md"
+    },
+    {
+      "member": "digital-tracker/claude/references/web.md",
+      "bytes": 9833,
+      "sha256": "c0141b30c7f49ebe810307aa082465605f167dab0842fb1b28adac2706faee7b",
+      "kind": "source",
+      "source": "claude/references/web.md"
+    }
+  ]
+}
