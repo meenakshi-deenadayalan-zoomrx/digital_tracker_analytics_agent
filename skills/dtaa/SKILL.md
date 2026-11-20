@@ -35,6 +35,7 @@ Detect **channel** (ads / web / emails / posts / search) and **query type** (exp
 | MedAI conversations from a supplied Excel/CSV of captured page text | `/dtaa-chat-parser` |
 | Metric requested, channel unclear | Ask user which channel before routing |
 | Multi-channel question | Load each relevant channel skill in sequence |
+| **Panel size / active users / "how many <specialty> in the DT panel"** — always answer with **actives over the last 3 months** (any channel), split by specialty, never registered-user counts | `references/panel_size.md`. Do not route to the channel skills. |
 | **Actives across Channel** — user supplies a target list (TL) of NPIs and asks for actives / active HCPs across channels | Use the saved "Actives Query across Channel": `references/actives_across_channel.md`, run via `scripts/actives_across_channel.py`. Do not route to the channel skills. |
 
 ## Human-in-the-Loop (HitL) Confirmation Workflow
@@ -115,6 +116,8 @@ Users are medical experts — leverage their knowledge.
 - Brand normalization: See `references/brand_normalization.md` — fills the
   `{brand_normalization}` placeholder; apply it in every SOV query, or share
   fragments across duplicate `brand_terms` rows
+- Panel size / active users: See `references/panel_size.md` — "panel size"
+  means actives in the last 3 months by specialty, not registered users
 - Actives Query across Channel: See `references/actives_across_channel.md` —
   the team's standard all-channel actives query, filtered to a supplied TL of
   NPIs; run it with `scripts/actives_across_channel.py`
